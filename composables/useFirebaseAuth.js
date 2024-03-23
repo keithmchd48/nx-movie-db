@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
+import { AVATAR } from "@/constants/assets";
 
 export default function () {
   const config = useRuntimeConfig();
@@ -25,8 +26,17 @@ export default function () {
   const signInUser = async (email, password) => {
     return await signInWithEmailAndPassword(auth, email, password);
   };
+
+  const updateUser = async (user, userData) => {
+    return await updateProfile(user, {
+      displayName: userData.name,
+      photoURL: AVATAR,
+    });
+  };
   return {
     registerUser,
     signInUser,
+    updateUser,
+    auth,
   };
 }

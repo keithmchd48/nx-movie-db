@@ -33,7 +33,7 @@
         class="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded"
       />
       <button
-        @click="handleOnClick"
+        @click="submitForm"
         class="w-full bg-brand-orange text-white p-3 opacity-100 rounded hover:bg-[#e55303]"
       >
         {{ formTitle }}
@@ -64,7 +64,7 @@ const SIGNUP = "signup";
 const validations = useValidations();
 const { validateLoginForm, validateSignupForm } = validations;
 
-const { registerUser, signInUser } = useFirebaseAuth();
+const { registerUser, signInUser, updateUser, auth } = useFirebaseAuth();
 
 const TRANSLATION = useTranslations();
 const TRANSLATION_AUTH = TRANSLATION.auth;
@@ -81,7 +81,7 @@ const password = ref("");
 const confirmPassword = ref("");
 const errorMessage = ref(null);
 
-const handleOnClick = () => {
+const submitForm = () => {
   if (formType.value === LOGIN) {
     let message = validateLoginForm(email.value);
     errorMessage.value = TRANSLATION_VALIDATIONS[message];
@@ -101,8 +101,34 @@ const handleOnClick = () => {
         }
       });
   } else {
-    console.log(name.value);
-    console.log("Signup");
+    const message = validateSignupForm(
+      name.value,
+      email.value,
+      password.value,
+      confirmPassword.value
+    );
+
+    errorMessage.value = TRANSLATION_VALIDATIONS[message];
+    if (message) {
+      return;
+    }
+
+    registerUser(email.value, password.value)
+      .then(() => {
+        errorMessage.value = null;
+        updateUser(auth.currentUser, { name: name.value })
+          .then(() => {
+            console.log("Signup successful", auth.currentUser);
+            const { uid, email, displayName, photoURL } = auth.currentUser;
+            // store user in global store
+          })
+          .catch((error) => {
+            console.log("Update user error", error.message);
+          });
+      })
+      .catch((error) => {
+        console.log("Signup error", error.message);
+      });
   }
 };
 
