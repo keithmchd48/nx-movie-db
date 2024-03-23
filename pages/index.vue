@@ -1,10 +1,7 @@
-<script setup lang="ts">
-const route = useRoute();
-</script>
+<script setup></script>
 
 <template>
   <div>
-    <h1 class="text">Home</h1>
-    <p>Full path: {{ route.fullPath }}</p>
+    <h1 class="bg-brand-black text-white">Home</h1>
   </div>
 </template>
