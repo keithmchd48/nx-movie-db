@@ -19,16 +19,16 @@ export default function () {
   };
   initializeApp(firebaseConfig);
   const auth = getAuth();
-  // const { auth } = useNuxtApp();
-  const registerUser = async (email, password) => {
-    return await createUserWithEmailAndPassword(auth, email, password);
+
+  const registerUser = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
   };
-  const signInUser = async (email, password) => {
-    return await signInWithEmailAndPassword(auth, email, password);
+  const signInUser = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const updateUser = async (user, userData) => {
-    return await updateProfile(user, {
+  const updateUser = (user, userData) => {
+    return updateProfile(user, {
       displayName: userData.name,
       photoURL: AVATAR,
     });

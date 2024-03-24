@@ -63,6 +63,7 @@ const userStore = useUserStore();
 
 const LOGIN = "login";
 const SIGNUP = "signup";
+const INVALID_CREDENTIALS = "auth/invalid-credential";
 
 const validations = useValidations();
 const { validateLoginForm, validateSignupForm } = validations;
