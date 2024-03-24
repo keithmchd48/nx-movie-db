@@ -33,6 +33,7 @@ export default function () {
       photoURL: AVATAR,
     });
   };
+
   return {
     registerUser,
     signInUser,

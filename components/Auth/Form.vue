@@ -58,12 +58,14 @@
 </template>
 
 <script setup>
+import { useUserStore } from "@/store/useUserStore";
+const userStore = useUserStore();
+
 const LOGIN = "login";
 const SIGNUP = "signup";
 
 const validations = useValidations();
 const { validateLoginForm, validateSignupForm } = validations;
-
 const { registerUser, signInUser, updateUser, auth } = useFirebaseAuth();
 
 const TRANSLATION = useTranslations();
@@ -121,6 +123,7 @@ const submitForm = () => {
             console.log("Signup successful", auth.currentUser);
             const { uid, email, displayName, photoURL } = auth.currentUser;
             // store user in global store
+            userStore.ADD_USER({ uid, email, displayName, photoURL });
           })
           .catch((error) => {
             console.log("Update user error", error.message);
