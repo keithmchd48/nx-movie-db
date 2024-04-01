@@ -69,11 +69,7 @@ const validations = useValidations();
 const { validateLoginForm, validateSignupForm } = validations;
 const { registerUser, signInUser, updateUser, auth } = useFirebaseAuth();
 
-import { useConfigStore } from "@/store/useConfigStore";
-const configStore = useConfigStore();
-const TRANSLATION = computed(() => configStore.GET_LANGUAGE);
-const TRANSLATION_AUTH = computed(() => TRANSLATION.value.auth);
-const TRANSLATION_VALIDATIONS = computed(() => TRANSLATION.value.validations);
+const { TRANSLATION_AUTH, TRANSLATION_VALIDATIONS } = useTranslations();
 
 const formType = ref(LOGIN);
 const formTitle = computed(() =>
