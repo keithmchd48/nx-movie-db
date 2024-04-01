@@ -1,6 +1,7 @@
 <template>
   <select
     class="max-w-11 bg-transparent xs:text-xs l:text-sm text-white outline-none"
+    :value="preferredLang"
     @change="SET_LANGUAGE($event.target.value)"
   >
     <option
@@ -16,5 +17,5 @@
 import { SUPPORTED_LANGUAGES } from "@/translations/languages";
 import { useConfigStore } from "@/store/useConfigStore";
 
-const { SET_LANGUAGE } = useConfigStore();
+const { SET_LANGUAGE, preferredLang } = useConfigStore();
 </script>
