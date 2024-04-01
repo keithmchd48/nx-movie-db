@@ -2,10 +2,11 @@
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt"],
+  modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt", "nuxt-icon"],
   tailwindcss: {
     exposeConfig: true,
   },
+  css: ["@/styles/index.css"],
   ssr: false,
   runtimeConfig: {
     public: {
