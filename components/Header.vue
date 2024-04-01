@@ -40,27 +40,10 @@
 </template>
 
 <script setup>
-import { onAuthStateChanged } from "firebase/auth";
 import { useUserStore } from "@/store/useUserStore";
-import { PATHS } from "@/constants/assets";
-
-const { ADD_USER, LOGOUT_USER, user } = useUserStore();
-const { auth } = useFirebaseAuth();
+const { user } = useUserStore();
 
 const isLoggedIn = computed(() => user);
-
-onAuthStateChanged(auth, (user) => {
-  console.log("User auth changed: ", user);
-  if (user) {
-    const { uid, email, displayName, photoURL } = user;
-    ADD_USER({ uid, email, displayName, photoURL });
-    navigateTo(PATHS.BROWSE);
-  } else {
-    // dispatch(UPDATE_SEARCH_QUERY(""));
-    LOGOUT_USER();
-    navigateTo(PATHS.AUTH);
-  }
-});
 
 const scroll = ref(false);
 const addGradient = () => {
