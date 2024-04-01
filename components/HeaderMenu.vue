@@ -8,7 +8,9 @@
 
 <script setup>
 import { HEADER_MENU } from "@/constants/assets";
-const TRANSLATION = useTranslations();
+import { useConfigStore } from "@/store/useConfigStore";
+const configStore = useConfigStore();
+const TRANSLATION = computed(() => configStore.GET_LANGUAGE);
 </script>
 
 <style scoped>

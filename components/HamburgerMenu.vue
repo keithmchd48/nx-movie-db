@@ -39,7 +39,9 @@
     },
   });
 
-const TRANSLATION = useTranslations();
+import { useConfigStore } from "@/store/useConfigStore";
+const configStore = useConfigStore();
+const TRANSLATION = computed(() => configStore.GET_LANGUAGE);
 
 const isHamburgerVisible = computed(() => props.user && props.isHamburgerOpen);
 </script>
