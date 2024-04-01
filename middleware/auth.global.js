@@ -2,13 +2,13 @@ import { useUserStore } from "@/store/useUserStore";
 import { PATHS } from "@/constants/assets";
 
 export default defineNuxtRouteMiddleware((to, from) => {
-  const { user } = useUserStore();
+  const userStore = useUserStore();
   
-  if (!user && to.path !== PATHS.AUTH) {
+  if (!userStore.user && to.path !== PATHS.AUTH) {
     return navigateTo(PATHS.AUTH);
   }
 
-  if (user && to.path === PATHS.AUTH) {
+  if (userStore.user && to.path === PATHS.AUTH) {
     return abortNavigation()
   }
 
