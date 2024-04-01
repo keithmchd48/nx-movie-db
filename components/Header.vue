@@ -36,20 +36,19 @@
           </ul>
         </div>
       </div>
-      <!-- <div class="flex items-center xs:gap-1 l:gap-3">
-        <LangSelect />
-        {user && <SearchComponent />}
-        <ProfileDropdown />
-      </div> -->
+      <div class="flex items-center xs:gap-1 l:gap-3">
+        <!-- <LangSelect /> -->
+        <!-- {user && <SearchComponent />} -->
+        <!-- <ProfileDropdown /> -->
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { useUserStore } from "@/store/useUserStore";
-const { user } = useUserStore();
-
-const isLoggedIn = computed(() => user);
+const userStore = useUserStore();
+const user = computed(() => userStore.user);
 
 const scroll = ref(false);
 const addGradient = () => {
@@ -63,10 +62,8 @@ onDeactivated(() => {
 });
 
 const hamburgerMenuOpen = ref(false);
-const isHamburgerIconVisible = computed(
-  () => isLoggedIn.value && !hamburgerMenuOpen.value
-);
-const isCloseIconVisible = computed(() => isLoggedIn.value && hamburgerMenuOpen.value);
+const isHamburgerIconVisible = computed(() => user.value && !hamburgerMenuOpen.value);
+const isCloseIconVisible = computed(() => user.value && hamburgerMenuOpen.value);
 const openHamburgerMenu = () => {
   hamburgerMenuOpen.value = true;
 };
