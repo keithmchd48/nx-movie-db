@@ -11,19 +11,21 @@
     >
       <div class="flex gap-3 items-center">
         <!-- Hamburger Icon -->
-        <Icon
+        <div
           @click="openHamburgerMenu"
-          name="game-icons:hamburger-menu"
-          class="sm:hidden text-white text-xl"
           :class="[isHamburgerIconVisible ? 'xs:block' : 'xs:hidden']"
-        />
-        <!-- Times Icon -->
-        <Icon
-          name="iconamoon:sign-times-duotone"
-          @click="closeHamburgerMenu"
           class="sm:hidden text-white text-xl"
+        >
+          <Icon name="game-icons:hamburger-menu" />
+        </div>
+        <!-- Times Icon -->
+        <div
+          @click="closeHamburgerMenu"
           :class="[isCloseIconVisible ? 'xs:block' : 'xs:hidden']"
-        />
+          class="sm:hidden text-white text-xl"
+        >
+          <Icon name="iconamoon:sign-times-duotone" />
+        </div>
         <Logo />
         <div class="xs:hidden sm:flex">
           <ul
@@ -72,3 +74,9 @@ const closeHamburgerMenu = () => {
   hamburgerMenuOpen.value = false;
 };
 </script>
+
+<style scoped>
+.icon {
+  display: inherit;
+}
+</style>
