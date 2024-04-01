@@ -1,7 +1,5 @@
 <script setup></script>
 
 <template>
-  <div>
-    <h1 class="bg-brand-black text-white">Home</h1>
-  </div>
+  <div class="bg-brand-black w-screen h-screen">Index</div>
 </template>

@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -34,10 +34,17 @@ export default function () {
     });
   };
 
+  const handleSignOut = () => {
+    signOut(auth).catch((error) => {
+      console.log(error.message);
+    });
+  };
+
   return {
     registerUser,
     signInUser,
     updateUser,
     auth,
+    handleSignOut
   };
 }
