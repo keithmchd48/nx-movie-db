@@ -69,13 +69,15 @@ const validations = useValidations();
 const { validateLoginForm, validateSignupForm } = validations;
 const { registerUser, signInUser, updateUser, auth } = useFirebaseAuth();
 
-const TRANSLATION = useTranslations();
-const TRANSLATION_AUTH = TRANSLATION.auth;
-const TRANSLATION_VALIDATIONS = TRANSLATION.validations;
+import { useConfigStore } from "@/store/useConfigStore";
+const configStore = useConfigStore();
+const TRANSLATION = computed(() => configStore.GET_LANGUAGE);
+const TRANSLATION_AUTH = computed(() => TRANSLATION.value.auth);
+const TRANSLATION_VALIDATIONS = computed(() => TRANSLATION.value.validations);
 
 const formType = ref(LOGIN);
 const formTitle = computed(() =>
-  formType.value === LOGIN ? TRANSLATION_AUTH.signIn : TRANSLATION_AUTH.signUp
+  formType.value === LOGIN ? TRANSLATION_AUTH.value.signIn : TRANSLATION_AUTH.value.signUp
 );
 
 const name = ref("");
@@ -87,7 +89,7 @@ const errorMessage = ref(null);
 const submitForm = () => {
   if (formType.value === LOGIN) {
     let message = validateLoginForm(email.value);
-    errorMessage.value = TRANSLATION_VALIDATIONS[message];
+    errorMessage.value = TRANSLATION_VALIDATIONS.value[message];
     if (message) {
       return;
     }
@@ -100,7 +102,7 @@ const submitForm = () => {
       .catch((error) => {
         console.log("Login erorr", error.code);
         if (error.code === INVALID_CREDENTIALS) {
-          errorMessage.value = TRANSLATION_VALIDATIONS.invalidCredentials;
+          errorMessage.value = TRANSLATION_VALIDATIONS.value.invalidCredentials;
         }
       });
   } else {
@@ -111,7 +113,7 @@ const submitForm = () => {
       confirmPassword.value
     );
 
-    errorMessage.value = TRANSLATION_VALIDATIONS[message];
+    errorMessage.value = TRANSLATION_VALIDATIONS.value[message];
     if (message) {
       return;
     }

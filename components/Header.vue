@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="flex items-center xs:gap-1 l:gap-3">
-        <!-- <LangSelect /> -->
+        <LangSelect />
         <!-- {user && <SearchComponent />} -->
         <!-- <ProfileDropdown /> -->
       </div>
