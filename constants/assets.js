@@ -13,3 +13,21 @@ export const PATHS = {
   MOVIES: "/movies",
   ERROR: "/error",
 };
+
+export const HEADER_MENU = [
+  {
+    name: "home",
+    title: "home",
+    path: PATHS.BROWSE,
+  },
+  {
+    name: "shows",
+    title: "shows",
+    path: PATHS.SHOWS,
+  },
+  {
+    name: "movies",
+    title: "movies",
+    path: PATHS.MOVIES,
+  },
+];

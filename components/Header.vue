@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- {<HamburgerMenu />} -->
+    <HamburgerMenu :user="user" :isHamburgerOpen="hamburgerMenuOpen" />
     <div
       :class="[
         scroll
@@ -10,25 +10,29 @@
       class="layout-padding flex fixed w-screen z-30 justify-between items-center py-3"
     >
       <div class="flex gap-3 items-center">
-        <div>
-          <div
-            @click="openHamburgerMenu"
-            class="sm:hidden text-white text-xl"
-            :class="[isHamburgerIconVisible ? 'xs:block' : 'xs:hidden']"
-          >
-            <Icon name="game-icons:hamburger-menu" />
-          </div>
-          <!-- Times Icon -->
-          <div
-            @click="closeHamburgerMenu"
-            class="sm:hidden text-white text-xl"
-            :class="[isCloseIconVisible ? 'xs:block' : 'xs:hidden']"
-          >
-            <Icon name="iconamoon:sign-times-duotone" />
-          </div>
-        </div>
+        <!-- Hamburger Icon -->
+        <Icon
+          @click="openHamburgerMenu"
+          name="game-icons:hamburger-menu"
+          class="sm:hidden text-white text-xl"
+          :class="[isHamburgerIconVisible ? 'xs:block' : 'xs:hidden']"
+        />
+        <!-- Times Icon -->
+        <Icon
+          name="iconamoon:sign-times-duotone"
+          @click="closeHamburgerMenu"
+          class="sm:hidden text-white text-xl"
+          :class="[isCloseIconVisible ? 'xs:block' : 'xs:hidden']"
+        />
         <Logo />
-        <!-- <HeaderMenu /> -->
+        <div class="xs:hidden sm:flex">
+          <ul
+            v-if="user"
+            class="xs:text-xs l:text-base flex items-center xs:gap-2 l:gap-3 sm:gap-4 font-light text-gray-200"
+          >
+            <HeaderMenu />
+          </ul>
+        </div>
       </div>
       <!-- <div class="flex items-center xs:gap-1 l:gap-3">
         <LangSelect />

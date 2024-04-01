@@ -17,7 +17,7 @@ export default defineNuxtConfig({
       FIREBASE_MESSAGING_SENDER_ID: process.env.FIREBASE_MESSAGING_SENDER_ID,
       FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
       TMDB_API_KEY: process.env.TMDB_API_KEY,
-    }
+    },
   },
   app: {
     head: {
@@ -31,11 +31,28 @@ export default defineNuxtConfig({
         {
           hid: "description",
           name: "description",
-          content: "FlixWatch is a movie and TV show database that allows you to search and filter through a vast collection of movies and TV shows.",
+          content:
+            "FlixWatch is a movie and TV show database that allows you to search and filter through a vast collection of movies and TV shows.",
         },
       ],
-      link: [{ rel: "icon", type: "image/x-icon", href: "https://keiths.sirv.com/Images/flix_ico.svg" }],
-    }
-  }
-})
-
+      link: [
+        {
+          rel: "icon",
+          type: "image/x-icon",
+          href: "https://keiths.sirv.com/Images/flix_ico.svg",
+        },
+      ],
+    },
+  },
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        // default values
+        componentName: "NuxtLink",
+        externalRelAttribute: "noopener noreferrer",
+        activeClass: "router-link-active",
+        exactActiveClass: "router-link-exact-active",
+      },
+    },
+  },
+});

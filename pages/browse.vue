@@ -1,5 +1,6 @@
 <template>
-  <button @click="handleSignOut" class="text-white">Logout</button>
+  <Header />
+  <!-- <button @click="handleSignOut" class="text-white">Logout</button> -->
 </template>
 
 <script setup>
