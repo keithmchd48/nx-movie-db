@@ -44,7 +44,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useUserStore } from "@/store/useUserStore";
 import { PATHS } from "@/constants/assets";
 
-const { ADD_USER, LOGOUT_USER } = useUserStore();
+const { ADD_USER, LOGOUT_USER, user } = useUserStore();
 const { auth } = useFirebaseAuth();
 
 const isLoggedIn = computed(() => user);
@@ -74,8 +74,10 @@ onDeactivated(() => {
 });
 
 const hamburgerMenuOpen = ref(false);
-const isHamburgerIconVisible = computed(() => isLoggedIn && !hamburgerMenuOpen.value);
-const isCloseIconVisible = computed(() => isLoggedIn && hamburgerMenuOpen.value);
+const isHamburgerIconVisible = computed(
+  () => isLoggedIn.value && !hamburgerMenuOpen.value
+);
+const isCloseIconVisible = computed(() => isLoggedIn.value && hamburgerMenuOpen.value);
 const openHamburgerMenu = () => {
   hamburgerMenuOpen.value = true;
 };
