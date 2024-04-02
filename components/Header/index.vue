@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HamburgerMenu :user="user" :isHamburgerOpen="hamburgerMenuOpen" />
+    <HeaderHamburgerMenu :user="user" :isHamburgerOpen="hamburgerMenuOpen" />
     <div
       :class="[
         scroll
@@ -31,14 +31,14 @@
         <div class="xs:hidden sm:flex">
           <ul
             v-if="user"
-            class="xs:text-xs l:text-base flex items-center xs:gap-2 l:gap-3 sm:gap-4 font-light text-gray-200"
+            class="xs:text-xs l:text-base flex items-center xs:gap-2 l:gap-3 sm:gap-4 font-thin text-gray-200"
           >
             <HeaderMenu />
           </ul>
         </div>
       </div>
       <div class="flex items-center xs:gap-1 l:gap-3">
-        <LangSelect />
+        <HeaderLangSelect />
         <!-- {user && <SearchComponent />} -->
         <ProfileDropdown />
       </div>
