@@ -1,5 +1,5 @@
 <template>
-  <div class="xs:hidden sm:block" v-click-outside="closeProfileOptions">
+  <div class="xs:hidden sm:block" v-on-click-outside="closeProfileOptions">
     <div v-if="user" class="relative">
       <button @click="toggleProfileOptions" tabIndex="0" class="flex items-center">
         <img alt="avatar" :src="user.photoURL || AVATAR" class="xs:w-6 l:w-8 cursor-pointer"></img>
@@ -9,6 +9,7 @@
   </div>
 </template>
 <script setup>
+import { vOnClickOutside } from "@vueuse/components";
 import { AVATAR } from "@/constants/assets";
 
 import { useUserStore } from "@/store/useUserStore";

@@ -12,8 +12,7 @@
       <div class="flex gap-3 items-center">
         <!-- Hamburger Icon -->
         <div
-          id="hamburger-icon"
-          v-click-outside:hamburger-icon="closeHamburgerMenu"
+          v-on-click-outside="closeHamburgerMenu"
           @click="openHamburgerMenu"
           :class="[isHamburgerIconVisible ? 'xs:block' : 'xs:hidden']"
           class="sm:hidden text-white text-xl"
@@ -48,6 +47,8 @@
 </template>
 
 <script setup>
+import { vOnClickOutside } from "@vueuse/components";
+
 import { useUserStore } from "@/store/useUserStore";
 const userStore = useUserStore();
 const user = computed(() => userStore.user);
