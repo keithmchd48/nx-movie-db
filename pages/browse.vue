@@ -1,8 +1,3 @@
-<template>
-  <Header />
-  <!-- <button @click="handleSignOut" class="text-white">Logout</button> -->
-</template>
+<template></template>
 
-<script setup>
-const { handleSignOut } = useFirebaseAuth();
-</script>
+<script setup></script>
