@@ -12,6 +12,8 @@
       <div class="flex gap-3 items-center">
         <!-- Hamburger Icon -->
         <div
+          id="hamburger-icon"
+          v-click-outside:hamburger-icon="closeHamburgerMenu"
           @click="openHamburgerMenu"
           :class="[isHamburgerIconVisible ? 'xs:block' : 'xs:hidden']"
           class="sm:hidden text-white text-xl"
