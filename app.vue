@@ -6,12 +6,16 @@
   </div>
 </template>
 <script setup>
-import { useUserStore } from "@/store/useUserStore";
 import { onAuthStateChanged } from "firebase/auth";
 import { PATHS } from "@/constants/assets";
 
 const { auth } = useFirebaseAuth();
+
+import { useUserStore } from "@/store/useUserStore";
 const { ADD_USER, LOGOUT_USER } = useUserStore();
+
+import { useSearchStore } from "@/store/useSearchStore";
+const { UPDATE_SEARCH_QUERY } = useSearchStore();
 
 onAuthStateChanged(auth, (user) => {
   console.log("User auth changed: ", user);
@@ -20,7 +24,7 @@ onAuthStateChanged(auth, (user) => {
     ADD_USER({ uid, email, displayName, photoURL });
     navigateTo(PATHS.BROWSE);
   } else {
-    // dispatch(UPDATE_SEARCH_QUERY(""));
+    UPDATE_SEARCH_QUERY("");
     LOGOUT_USER();
     navigateTo(PATHS.AUTH);
   }

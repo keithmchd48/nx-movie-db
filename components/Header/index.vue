@@ -39,7 +39,7 @@
       </div>
       <div class="flex items-center xs:gap-1 l:gap-3">
         <HeaderLangSelect />
-        <!-- {user && <SearchComponent />} -->
+        <SearchContainer v-show="user" />
         <ProfileDropdown />
       </div>
     </div>
