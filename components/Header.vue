@@ -39,7 +39,7 @@
       <div class="flex items-center xs:gap-1 l:gap-3">
         <LangSelect />
         <!-- {user && <SearchComponent />} -->
-        <!-- <ProfileDropdown /> -->
+        <ProfileDropdown />
       </div>
     </div>
   </div>
