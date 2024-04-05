@@ -12,7 +12,7 @@
     <!-- Play and More Info buttons -->
     <div class="flex">
       <Button @click="onPlay" class="bg-white text-black">
-        <Icon name="material-symbols:play-arrow" class="mr-2" />
+        <Icon name="ph:play-fill" class="mr-2 font-bold text-2xl" />
         {{ TRANSLATION.play }}
       </Button>
       <Button @click="onMoreInfo" class="bg-gray-600 text-white ml-3">
