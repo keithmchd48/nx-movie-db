@@ -18,6 +18,8 @@ export const TMDB_DOMAIN_SHOW = `${TMDB_DOMAIN}${MEDIA_TYPES.TV}/`;
 export const POSTER_PATH_URL = "https://image.tmdb.org/t/p/w780";
 export const TMDB_API_DOMAIN = "https://api.themoviedb.org/3";
 export const YOUTUBE_DOMAIN = "https://www.youtube.com/";
+export const YOUTUBE_IFRAME_ID = "youtube-trailer";
+export const YOUTUBE_SCRIPT_ID = "youtube-iframe-api";
 
   export const PATHS = {
   INDEX: "/",

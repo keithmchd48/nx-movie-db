@@ -10,10 +10,7 @@
 </template>
 
 <script setup>
-const YOUTUBE_SCRIPT_ID = "youtube-iframe-api";
-const YOUTUBE_IFRAME_ID = "youtube-trailer";
-
-import { YOUTUBE_DOMAIN } from "@/constants/assets";
+import { YOUTUBE_DOMAIN, YOUTUBE_IFRAME_ID } from "@/constants/assets";
 
 const props = defineProps({
   trailerKey: {
@@ -26,45 +23,17 @@ const { trailerKey } = toRefs(props);
 
 import { useTrailerStore } from "@/store/useTrailerStore";
 const trailerStore = useTrailerStore();
-// const isMuted = computed(() => trailerStore.isMuted);
-
-const YTPlayerRef = ref(null);
-const loadYTPlayerRef = () => {
-  YTPlayerRef.value = new window.YT.Player(YOUTUBE_IFRAME_ID, {
-    videoId: trailerKey.value,
-    playerVars: { autoplay: 1, controls: 0 },
-  });
-};
-
-let iframeScript = null;
+const YTPlayerRef = computed(() => trailerStore.YTPlayerRef);
+const { SET_YT_PLAYER_REF } = trailerStore;
 
 onMounted(() => {
-  iframeScript = document.getElementById(YOUTUBE_SCRIPT_ID);
-
-  if (!iframeScript) {
-    iframeScript = document.createElement("script");
-    iframeScript.id = YOUTUBE_SCRIPT_ID;
-    iframeScript.src = `${YOUTUBE_DOMAIN}iframe_api`;
-    const firstScriptTag = document.getElementsByTagName("script")[0];
-    firstScriptTag.parentNode.insertBefore(iframeScript, firstScriptTag);
-  }
-
-  window.onYouTubeIframeAPIReady = loadYTPlayerRef;
-});
-
-onUnmounted(() => {
-  if (iframeScript) {
-    iframeScript.remove();
-  }
-  window.YT = null;
-  YTPlayerRef.value = null;
-  window.onYouTubeIframeAPIReady = null;
+  SET_YT_PLAYER_REF(trailerKey.value);
 });
 
 watch(
   () => trailerStore.isMuted,
   () => {
-    if (YTPlayerRef.value) {
+    if (YTPlayerRef.value && YTPlayerRef.value.isMuted) {
       if (YTPlayerRef.value.isMuted()) {
         YTPlayerRef.value.unMute();
       } else {
