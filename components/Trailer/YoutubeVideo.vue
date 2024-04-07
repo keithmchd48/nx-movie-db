@@ -57,6 +57,7 @@ onUnmounted(() => {
     iframeScript.remove();
   }
   window.YT = null;
+  YTPlayerRef.value = null;
   window.onYouTubeIframeAPIReady = null;
 });
 
