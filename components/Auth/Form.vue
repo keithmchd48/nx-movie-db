@@ -92,8 +92,6 @@ const submitForm = () => {
     signInUser(email.value, password.value)
       .then(() => {
         errorMessage.value = null;
-        console.log("Login susccessful");
-        // navigate to browse
       })
       .catch((error) => {
         console.log("Login erorr", error.code);
@@ -119,7 +117,6 @@ const submitForm = () => {
         errorMessage.value = null;
         updateUser(auth.currentUser, { name: name.value })
           .then(() => {
-            console.log("Signup successful", auth.currentUser);
             const { uid, email, displayName, photoURL } = auth.currentUser;
             // store user in global store
             userStore.ADD_USER({ uid, email, displayName, photoURL });

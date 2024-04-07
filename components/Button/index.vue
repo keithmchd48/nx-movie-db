@@ -7,8 +7,4 @@
     <slot />
   </button>
 </template>
-<script setup>
-const onClick = () => {
-  console.log("Button clicked");
-};
-</script>
+<script setup></script>

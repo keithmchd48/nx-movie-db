@@ -18,7 +18,6 @@ import { useSearchStore } from "@/store/useSearchStore";
 const { UPDATE_SEARCH_QUERY } = useSearchStore();
 
 onAuthStateChanged(auth, (user) => {
-  console.log("User auth changed: ", user);
   if (user) {
     const { uid, email, displayName, photoURL } = user;
     ADD_USER({ uid, email, displayName, photoURL });

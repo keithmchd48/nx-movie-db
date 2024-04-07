@@ -26,6 +26,7 @@ const props = defineProps({
 
 const { original_title, original_name, overview, adult, id } = toRefs(props.sample);
 
+const checkForTitle = computed(() => original_title || original_name);
 const tmdbLink = computed(() => `${TMDB_DOMAIN_MOVIE}${id.value}`);
-const title = computed(() => original_title.value || original_name.value);
+const title = computed(() => checkForTitle.value.value);
 </script>
