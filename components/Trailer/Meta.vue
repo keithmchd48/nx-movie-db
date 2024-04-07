@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute layout-padding top-10 pt-[20%] w-screen aspect-video bg-gradient-to-r from-brand-black"
+    class="absolute layout-padding top-10 m:pt-[20%] w-screen aspect-video bg-gradient-to-r from-brand-black"
   >
     <!-- Title and Overview -->
     <h1 class="lg:text-6xl m:text-3xl xs:text-xl text-white font-bold">{{ title }}</h1>
