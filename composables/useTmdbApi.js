@@ -39,6 +39,11 @@ export default function () {
     return data.value.results;
   };
 
+  const fetchUpcomingMovies = async () => {
+    const {data} = await callApi(`${TMDB_API_DOMAIN}/movie/upcoming?page=1`);
+    return data.value.results;
+  };
+
   const fetchSampleMovieTrailer = async (movieId) => {
     const {data} = await callApi(`${TMDB_API_DOMAIN}/movie/${movieId}/videos?`);
     const results = data.value.results;
@@ -53,6 +58,7 @@ export default function () {
     fetchNowPlayingMovies,
     fetchAiringTodayShows,
     fetchTopRatedMovies,
+    fetchUpcomingMovies,
     fetchSampleMovieTrailer
   };
 }

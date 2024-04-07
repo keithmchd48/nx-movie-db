@@ -14,7 +14,7 @@ const {
 } = useTmdbApi();
 
 const nowPlayingMovies = await fetchNowPlayingMovies();
-const airingTodayShowsData = await fetchAiringTodayShows();
+const airingTodayShows = await fetchAiringTodayShows();
 const topRatedMovies = await fetchTopRatedMovies();
 
 const sampleMovie = computed(() => nowPlayingMovies?.[0]);
@@ -34,7 +34,7 @@ const content = computed(() => [
   {
     id: "browse-airing-today",
     title: TRANSLATION.value.browse.tvShows,
-    samples: airingTodayShowsData,
+    samples: airingTodayShows,
     sampleType: TV,
   },
   {
