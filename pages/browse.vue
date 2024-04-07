@@ -1,7 +1,6 @@
 <template>
-  <div></div>
   <HeroContent :sample="sampleMovie" :trailerKey="trailerKey" />
-  <!-- <SecondaryContent content="{content}" /> -->
+  <SecondaryContent :content="content" />
 </template>
 
 <script setup>
@@ -25,7 +24,7 @@ const trailerKey = computed(() => trailer?.key);
 
 const { MOVIE, TV } = MEDIA_TYPES;
 const { TRANSLATION } = useTranslations();
-let content = [
+const content = computed(() => [
   {
     id: "browse-now-playing",
     title: TRANSLATION.value.browse.nowPlaying,
@@ -44,5 +43,5 @@ let content = [
     samples: topRatedMovies,
     sampleType: MOVIE,
   },
-];
+]);
 </script>
