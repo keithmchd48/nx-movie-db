@@ -48,7 +48,7 @@ onMounted(() => {
   }
 });
 
-onUnmounted(() => {
+onBeforeMount(() => {
   if (iframeScript) {
     iframeScript.remove();
   }
