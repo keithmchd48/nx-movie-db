@@ -30,7 +30,7 @@ const trailerStore = useTrailerStore();
 
 const YTPlayerRef = ref(null);
 const loadYTPlayerRef = () => {
-  YTPlayerRef.value.current = new window.YT.Player(YOUTUBE_IFRAME_ID, {
+  YTPlayerRef.value = new window.YT.Player(YOUTUBE_IFRAME_ID, {
     videoId: trailerKey.value,
     playerVars: { autoplay: 1, controls: 0 },
   });
@@ -49,10 +49,7 @@ onMounted(() => {
     firstScriptTag.parentNode.insertBefore(iframeScript, firstScriptTag);
   }
 
-  window.onYouTubeIframeAPIReady = () => {
-    console.log("yt api ready");
-    loadYTPlayerRef();
-  };
+  window.onYouTubeIframeAPIReady = loadYTPlayerRef;
 });
 
 onUnmounted(() => {
@@ -66,11 +63,11 @@ onUnmounted(() => {
 watch(
   () => trailerStore.isMuted,
   () => {
-    if (YTPlayerRef.value.current) {
-      if (YTPlayerRef.value.current.isMuted()) {
-        YTPlayerRef.value.current.unMute();
+    if (YTPlayerRef.value) {
+      if (YTPlayerRef.value.isMuted()) {
+        YTPlayerRef.value.unMute();
       } else {
-        YTPlayerRef.value.current.mute();
+        YTPlayerRef.value.mute();
       }
     }
   }
