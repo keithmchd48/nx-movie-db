@@ -14,4 +14,8 @@ export const useUserStore = defineStore("userStore", () => {
     ADD_USER,
     LOGOUT_USER,
   };
+}, {
+  persist: {
+    storage: persistedState.localStorage,
+  }
 });

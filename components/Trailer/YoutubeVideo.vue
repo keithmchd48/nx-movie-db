@@ -28,6 +28,10 @@ const { SET_YT_PLAYER_REF } = trailerStore;
 
 onMounted(() => {
   SET_YT_PLAYER_REF(trailerKey.value);
+
+  window.onYouTubeIframeAPIReady = () => {
+    SET_YT_PLAYER_REF(trailerKey.value);
+  };
 });
 
 watch(

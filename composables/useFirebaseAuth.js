@@ -5,7 +5,10 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { AVATAR } from "@/constants/assets";
+import { AVATAR, PATHS } from "@/constants/assets";
+
+import { useUserStore } from "@/store/useUserStore";
+import { useSearchStore } from "@/store/useSearchStore";
 
 export default function () {
   const config = useRuntimeConfig();
@@ -19,6 +22,9 @@ export default function () {
   };
   initializeApp(firebaseConfig);
   const auth = getAuth();
+
+  const { ADD_USER, LOGOUT_USER } = useUserStore();
+  const { UPDATE_SEARCH_QUERY } = useSearchStore();
 
   const registerUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -35,7 +41,11 @@ export default function () {
   };
 
   const handleSignOut = () => {
-    signOut(auth).catch((error) => {
+    signOut(auth).then(() => {
+      UPDATE_SEARCH_QUERY("");
+      LOGOUT_USER();
+      navigateTo(PATHS.AUTH);
+    }).catch((error) => {
       console.log(error.message);
     });
   };

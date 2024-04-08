@@ -58,6 +58,7 @@
 </template>
 
 <script setup>
+import { PATHS } from "@/constants/assets";
 import { useUserStore } from "@/store/useUserStore";
 const userStore = useUserStore();
 
@@ -90,8 +91,13 @@ const submitForm = () => {
       return;
     }
     signInUser(email.value, password.value)
-      .then(() => {
+      .then((userCredential) => {
         errorMessage.value = null;
+        const theUser = userCredential.user;
+        const { uid, email, displayName, photoURL } = theUser;
+        // store user in global store
+        userStore.ADD_USER({ uid, email, displayName, photoURL });
+        navigateTo(PATHS.BROWSE);
       })
       .catch((error) => {
         console.log("Login erorr", error.code);
@@ -120,6 +126,7 @@ const submitForm = () => {
             const { uid, email, displayName, photoURL } = auth.currentUser;
             // store user in global store
             userStore.ADD_USER({ uid, email, displayName, photoURL });
+            navigateTo(PATHS.BROWSE);
           })
           .catch((error) => {
             console.log("Update user error", error.message);

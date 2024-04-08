@@ -9,6 +9,9 @@ export const useTrailerStore = defineStore("trailerStore", () => {
   }
 
   function SET_YT_PLAYER_REF(trailerKey) {
+    if (!window.YT) {
+      return;
+    }
     YTPlayerRef.value = new window.YT.Player(YOUTUBE_IFRAME_ID, {
       videoId: trailerKey,
       playerVars: { autoplay: 1, controls: 0 },

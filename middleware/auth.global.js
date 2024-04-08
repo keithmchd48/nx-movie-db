@@ -5,16 +5,19 @@ export default defineNuxtRouteMiddleware((to, from) => {
   const userStore = useUserStore();
   const user = computed(() => userStore.user);
   
+  // Redirect to auth if user is not present and tries to go to an authenticated route
   if (!user.value && to.path !== PATHS.AUTH) {
     return navigateTo(PATHS.AUTH);
   }
 
+  // if user is present and tries to go to "/auth"
   if (user.value && to.path === PATHS.AUTH) {
-    return abortNavigation()
+    return navigateTo(PATHS.BROWSE);
   }
 
   // Redirect to browse if user is logged in and tries to go to "/"
   if (to.path === PATHS.INDEX) {
-    return navigateTo(PATHS.BROWSE);
+    if (user.value) return navigateTo(PATHS.BROWSE);
+    return navigateTo(PATHS.AUTH);
   }
 })
