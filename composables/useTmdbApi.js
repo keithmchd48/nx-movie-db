@@ -6,7 +6,7 @@ export default function () {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${config.public.TMDB_API_KEY}`,
+      Authorization: `Bearer ${config.public.NUXT_TMDB_API_KEY}`,
     },
   };
 
