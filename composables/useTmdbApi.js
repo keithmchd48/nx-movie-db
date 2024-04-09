@@ -1,29 +1,4 @@
-import { TMDB_API_DOMAIN } from "@/constants/assets";
-
 export default function () {
-  const config = useRuntimeConfig();
-  const API_REQUEST_OPTIONS = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${config.public.NUXT_TMDB_API_KEY}`,
-    },
-  };
-
-  const callApi = async (url) => {
-    const { data, pending, error, refresh } = await useFetch(
-      url,
-      API_REQUEST_OPTIONS
-    );
-
-    return {
-      data,
-      pending,
-      error,
-      refresh,
-    };
-  };
-
   const fetchNowPlayingMovies = async () => {
     const {data} = await useFetch(`api/movies/now_playing?page=1`);
     return data.value.results;
@@ -40,7 +15,7 @@ export default function () {
   };
 
   const fetchSampleMovieTrailer = async (movieId) => {
-    const {data} = await callApi(`${TMDB_API_DOMAIN}/movie/${movieId}/videos?`);
+    const {data} = await useFetch(`api/movies/trailer/${movieId}`);
     const results = data.value.results;
     const movieTrailer =
       results.find((video) => video.type === "Trailer") ||
@@ -64,7 +39,7 @@ export default function () {
   };
 
   const fetchSampleTvShowTrailer = async (tvShowId) => {
-    const {data} = await callApi(`${TMDB_API_DOMAIN}/tv/${tvShowId}/videos?`);
+    const {data} = await useFetch(`api/shows/trailer/${tvShowId}`);
     const results = data.value.results;
     const showTrailer =
       results.find((video) => video.type === "Trailer") ||
@@ -73,7 +48,6 @@ export default function () {
   };
 
   return {
-    callApi,
     fetchNowPlayingMovies,
     fetchAiringTodayShows,
     fetchTopRatedMovies,
@@ -83,6 +57,5 @@ export default function () {
     fetchOnAirShows,
     fetchTopRatedShows,
     fetchSampleTvShowTrailer,
-    API_REQUEST_OPTIONS
   };
 }
