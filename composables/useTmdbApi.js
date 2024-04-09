@@ -47,6 +47,11 @@ export default function () {
     return showTrailer;
   };
 
+  const searchAll = async (searchQuery) => {
+    const {data} = await useFetch(`api/search?searchQuery=${searchQuery}&page=1`);
+    return data.value.results;
+  };
+
   return {
     fetchNowPlayingMovies,
     fetchAiringTodayShows,
@@ -57,5 +62,6 @@ export default function () {
     fetchOnAirShows,
     fetchTopRatedShows,
     fetchSampleTvShowTrailer,
+    searchAll
   };
 }
