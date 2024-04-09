@@ -25,17 +25,17 @@ export default function () {
   };
 
   const fetchNowPlayingMovies = async () => {
-    const {data} = await callApi(`${TMDB_API_DOMAIN}/movie/now_playing?page=1`);
+    const {data} = await useFetch(`api/movies/now_playing?page=1`);
     return data.value.results;
   };
 
   const fetchTopRatedMovies = async () => {
-    const {data} = await callApi(`${TMDB_API_DOMAIN}/movie/top_rated?page=1`);
+    const {data} = await useFetch(`api/movies/top_rated?page=1`);
     return data.value.results;
   };
 
   const fetchUpcomingMovies = async () => {
-    const {data} = await callApi(`${TMDB_API_DOMAIN}/movie/upcoming?page=1`);
+    const {data} = await useFetch(`api/movies/upcoming?page=1`);
     return data.value.results;
   };
 
@@ -49,17 +49,17 @@ export default function () {
   };
 
   const fetchAiringTodayShows = async () => {
-    const {data} = await callApi(`${TMDB_API_DOMAIN}/tv/airing_today?page=1`);
+    const {data} = await useFetch(`api/shows/airing_today?page=1`);
     return data.value.results;
   };
 
   const fetchOnAirShows = async () => {
-    const {data} = await callApi(`${TMDB_API_DOMAIN}/tv/on_the_air?page=1`);
+    const {data} = await useFetch(`api/shows/on_the_air?page=1`);
     return data.value.results;
   };
 
   const fetchTopRatedShows = async () => {
-    const {data} = await callApi(`${TMDB_API_DOMAIN}/tv/top_rated?page=1`);
+    const {data} = await useFetch(`api/shows/top_rated?page=1`);
     return data.value.results;
   };
 
@@ -82,6 +82,7 @@ export default function () {
     fetchAiringTodayShows,
     fetchOnAirShows,
     fetchTopRatedShows,
-    fetchSampleTvShowTrailer
+    fetchSampleTvShowTrailer,
+    API_REQUEST_OPTIONS
   };
 }
