@@ -10,6 +10,8 @@ export default defineNuxtConfig({
   css: ["@/styles/index.css"],
   ssr: false,
   runtimeConfig: {
+    NUXT_TMDB_API_KEY: process.env.NUXT_TMDB_API_KEY,
+    NUXT_TMDB_API_BASE_URL: process.env.NUXT_TMDB_API_BASE_URL,
     public: {
       NUXT_FIREBASE_API_KEY: process.env.NUXT_FIREBASE_API_KEY,
       NUXT_FIREBASE_AUTH_DOMAIN: process.env.NUXT_FIREBASE_AUTH_DOMAIN,
@@ -17,7 +19,6 @@ export default defineNuxtConfig({
       NUXT_FIREBASE_STORAGE_BUCKET: process.env.NUXT_FIREBASE_STORAGE_BUCKET,
       NUXT_FIREBASE_MESSAGING_SENDER_ID: process.env.NUXT_FIREBASE_MESSAGING_SENDER_ID,
       NUXT_FIREBASE_APP_ID: process.env.NUXT_FIREBASE_APP_ID,
-      NUXT_TMDB_API_KEY: process.env.NUXT_TMDB_API_KEY,
     },
   },
   app: {

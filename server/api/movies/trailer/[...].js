@@ -1,5 +1,3 @@
-import { TMDB_API_DOMAIN } from "@/constants/assets";
-
 export default defineEventHandler((event) => {
   const movieId = [...event.node.req.url.split("/")].pop();
   const config = useRuntimeConfig();
@@ -8,9 +6,9 @@ export default defineEventHandler((event) => {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${config.public.NUXT_TMDB_API_KEY}`,
+      Authorization: `Bearer ${config.NUXT_TMDB_API_KEY}`,
     },
   };
 
-  return $fetch(`${TMDB_API_DOMAIN}/movie/${movieId}/videos?`, API_REQUEST_OPTIONS)
+  return $fetch(`${config.NUXT_TMDB_API_BASE_URL}/movie/${movieId}/videos?`, API_REQUEST_OPTIONS)
 })
