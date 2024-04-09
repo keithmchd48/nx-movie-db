@@ -2,7 +2,6 @@ export default defineEventHandler((event) => {
   const {page} = getQuery(event);
   
   const config = useRuntimeConfig();
-  console.log(config);
   const API_REQUEST_OPTIONS = {
     method: "GET",
     headers: {
