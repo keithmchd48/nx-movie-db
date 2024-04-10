@@ -15,11 +15,17 @@
 </template>
 <script setup>
 const props = defineProps({
-  sectionData: {
-    type: Object,
+  title: {
+    type: String,
+    required: true,
+  },
+  samples: {
+    type: Array,
+    required: true,
+  },
+  sampleType: {
+    type: String,
     required: true,
   },
 });
-const { sectionData } = toRefs(props);
-const { title, samples, sampleType } = sectionData.value;
 </script>

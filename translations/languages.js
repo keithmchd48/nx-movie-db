@@ -102,7 +102,7 @@ export const LANG = {
     shows: {
       airingToday: "Luftning i dag",
       onTheAir: "På luften",
-      topRatedShows: "Bedst bedømte",
+      topRated: "Bedst bedømte",
     },
     movies: {
       nowPlaying: "Nu spiller",
@@ -161,7 +161,7 @@ export const LANG = {
     shows: {
       airingToday: "En el aire hoy",
       onTheAir: "En el aire",
-      topRatedShows: "Mejor calificado",
+      topRated: "Mejor calificado",
     },
     movies: {
       nowPlaying: "Reproduciendo ahora",
