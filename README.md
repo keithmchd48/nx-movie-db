@@ -1,4 +1,4 @@
-(Live!)[https://myflixwatcher.netlify.app/]
+[Live!](https://myflixwatcher.netlify.app/)
 
 ## Setup
 
