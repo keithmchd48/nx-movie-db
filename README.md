@@ -1,3 +1,5 @@
+(Live!)[]
+
 ## Setup
 
 ```bash
@@ -25,5 +27,6 @@ npm run build
     - Español (ES)
   - Deployed through [Netlify](https://app.netlify.com/)
   - [Pinia](https://nuxt.com/modules/pinia) for global state management
+  - [Icons](https://icones.js.org/collection/all) library
 
 

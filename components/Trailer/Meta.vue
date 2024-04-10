@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute layout-padding top-10 m:pt-[20%] w-screen aspect-video bg-gradient-to-r from-brand-black"
+    class="absolute layout-padding top-10 xs:pt-[10%] m:pt-[15%] l:pt-[20%] w-screen aspect-video bg-gradient-to-r from-brand-black"
   >
     <!-- Title and Overview -->
     <h1 class="lg:text-6xl m:text-3xl xs:text-xl text-white font-bold">{{ title }}</h1>
@@ -23,7 +23,7 @@
   </div>
   <!-- Mute controle & Age Rating -->
   <div
-    class="relative right-0 xs:top-36 s:top-36 m:top-50 l:top-56 sm:top-64 md:top-72 lg:top-[500px] flex items-center justify-end"
+    class="relative right-0 xs:top-14 s:top-14 m:top-24 l:top-40 sm:top-64 md:top-72 lg:top-[500px] flex items-center justify-end"
   >
     <TrailerMute />
     <TrailerAgeRating :rating="ageRating" />
