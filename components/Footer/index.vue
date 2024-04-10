@@ -7,7 +7,7 @@
       {{ TRANSLATION.footer.madeBy }}
       <a
         rel="noreferrer"
-        class="text-brand-orange hover:underline ml-2"
+        class="text-brand-orange hover:underline ml-1"
         :href="MY_BIO_LINK"
         target="_blank"
       >
