@@ -14,4 +14,9 @@ export const useConfigStore = defineStore("configStore", () => {
     SET_LANGUAGE,
     GET_LANGUAGE
   };
+},
+{
+  persist: {
+    storage: persistedState.localStorage,
+  }
 });

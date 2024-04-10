@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute right-0 mt-2 bg-brand-black shadow-lg text-white border-[0.5px] border-gray-400 xs:text-xs m:text-base"
+    class="absolute right-0 mt-2 min-w-max bg-brand-black shadow-lg text-white border-[0.5px] border-gray-400 xs:text-xs m:text-base"
     :class="[isOpen ? 'block' : 'hidden']"
   >
     <div class="p-2 flex items-center text-nowrap">
