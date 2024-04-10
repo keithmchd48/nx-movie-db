@@ -1,75 +1,29 @@
-# Nuxt 3 Minimal Starter
-
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
-
 ## Setup
 
-Make sure to install the dependencies:
-
 ```bash
-# npm
+# install dependencies
 npm install
 
-# pnpm
-pnpm install
+# Start the development server on `http://localhost:3000`
+npm start
 
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
+# Build the application for production
 npm run build
 
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+# Features
+  - Built using Nuxt 3
+  - UI/UX inspired by [Netflix](https://www.netflix.com/)
+  - Authentication using [Firebase Authentication](https://firebase.google.com/docs/auth)
+  - Movie and TV Shows DM from [The Movie Database (TMDB)](https://www.themoviedb.org/)
+  - Background trailer video is implemented via [YouTube Player API Reference for iframe Embeds](https://developers.google.com/youtube/iframe_api_reference)
+  - Styled using [TailwindCSS](https://tailwindcss.com/)
+  - App is available in the following languages:
+    - English (EN)
+    - Dansk (DK)
+    - Español (ES)
+  - Deployed through [Netlify](https://app.netlify.com/)
+  - [Pinia](https://nuxt.com/modules/pinia) for global state management
 
-```bash
-# npm
-npm run preview
 
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
