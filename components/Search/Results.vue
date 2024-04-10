@@ -6,6 +6,9 @@
     <div v-show="!isSearching">
       <SampleList
         v-for="section in filteredContent"
+        :title="section.title"
+        :samples="section.samples"
+        :sampleType="section.sampleType"
         :sectionData="section"
         :key="section.id"
       />
