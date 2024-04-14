@@ -62,7 +62,14 @@ export const LANG = {
     error: {
       message: "Something went wrong.",
       cta: "Go back to home",
-    }
+    },
+    headTitles: {
+      login: "Login",
+      browse: "Home",
+      shows: "TV Shows",
+      movies: "Movies",
+      error: "Error",
+    },
   },
   dk: {
     identifier: "dk",
@@ -125,7 +132,14 @@ export const LANG = {
     error: {
       message: "Noget gik galt.",
       cta: "Gå tilbage til start",
-    }
+    },
+    headTitles: {
+      login: "Log ind",
+      browse: "Hjem",
+      shows: "TV Shows",
+      movies: "Film",
+      error: "Fejl",
+    },
   },
   es: {
     identifier: "es",
@@ -188,7 +202,14 @@ export const LANG = {
     error: {
       message: "Algo salió mal.",
       cta: "Volver a inicio",
-    }
+    },
+    headTitles: {
+      login: "Iniciar sesión",
+      browse: "Inicio",
+      shows: "Series",
+      movies: "Películas",
+      error: "Error",
+    },
   },
 };
 export const SUPPORTED_LANGUAGES = [

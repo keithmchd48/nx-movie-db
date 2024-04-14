@@ -17,10 +17,11 @@
 </template>
 
 <script setup>
-import {BG_IMG_URL, HEAD_TITLES} from "@/constants/assets.js";
+import {BG_IMG_URL} from "@/constants/assets.js";
 
+const { HEAD_TITLES } = useHeadTitles();
 useHead({
-  title: HEAD_TITLES.LOGIN,
+  title: HEAD_TITLES.value.LOGIN,
 });
 
 </script>

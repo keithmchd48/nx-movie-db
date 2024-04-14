@@ -14,10 +14,11 @@
 </template>
 
 <script setup>
-import { PATHS, HEAD_TITLES } from "@/constants/assets";
+import { PATHS } from "@/constants/assets";
 
+const { HEAD_TITLES } = useHeadTitles();
 useHead({
-  title: HEAD_TITLES.ERROR,
+  title: HEAD_TITLES.value.ERROR,
 });
 
 const { TRANSLATION } = useTranslations();
