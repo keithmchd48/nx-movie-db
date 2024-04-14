@@ -45,3 +45,12 @@ export const HEADER_MENU = [
     path: PATHS.MOVIES,
   },
 ];
+
+const APP_NAME = "Flixwatch";
+export const HEAD_TITLES = {
+  LOGIN: `${APP_NAME} | Login`,
+  BROWSE: `${APP_NAME} | Home`,
+  SHOWS: `${APP_NAME} | TV Shows`,
+  MOVIES: `${APP_NAME} | Movies`,
+  ERROR: `${APP_NAME} | Error`,
+};

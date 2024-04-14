@@ -4,7 +4,11 @@
 </template>
 
 <script setup>
-import { MEDIA_TYPES } from "@/constants/assets";
+import { MEDIA_TYPES, HEAD_TITLES } from "@/constants/assets";
+
+useHead({
+  title: HEAD_TITLES.MOVIES,
+});
 
 const {
   fetchTopRatedMovies,
