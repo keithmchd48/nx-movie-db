@@ -1,4 +1,7 @@
 <template>
+  <Head>
+    <Title>{{ headTitle }}</Title>
+  </Head>
   <Header />
   <div v-show="!searchQuery">
     <slot />
@@ -12,4 +15,6 @@
 import { useSearchStore } from "@/store/useSearchStore";
 const searchStore = useSearchStore();
 const searchQuery = computed(() => searchStore.searchQuery);
+
+const { headTitle } = useHeadTitles();
 </script>

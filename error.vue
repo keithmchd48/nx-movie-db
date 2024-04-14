@@ -16,11 +16,6 @@
 <script setup>
 import { PATHS } from "@/constants/assets";
 
-const { HEAD_TITLES } = useHeadTitles();
-useHead({
-  title: HEAD_TITLES.value.ERROR,
-});
-
 const { TRANSLATION } = useTranslations();
 
 const handleClick = () => {

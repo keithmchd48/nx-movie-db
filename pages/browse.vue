@@ -6,12 +6,6 @@
 <script setup>
 import { MEDIA_TYPES } from "@/constants/assets";
 
-const { HEAD_TITLES } = useHeadTitles();
-
-useHead({
-  title: HEAD_TITLES.value.BROWSE,
-});
-
 const {
   fetchNowPlayingMovies,
   fetchAiringTodayShows,
