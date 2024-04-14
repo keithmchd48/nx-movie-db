@@ -5,6 +5,11 @@ export default defineNuxtRouteMiddleware((to, from) => {
   const userStore = useUserStore();
   const user = computed(() => userStore.user);
   
+  const allPaths = Object.values(PATHS);
+  if(!allPaths.includes(to.path)) {
+    return navigateTo(PATHS.INDEX);
+  }
+
   // Redirect to auth if user is not present and tries to go to an authenticated route
   if (!user.value && to.path !== PATHS.AUTH) {
     return navigateTo(PATHS.AUTH);

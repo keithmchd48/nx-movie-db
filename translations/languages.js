@@ -59,6 +59,10 @@ export const LANG = {
       tvShows: "TV Shows",
       searching: "Searching...",
     },
+    error: {
+      message: "Something went wrong.",
+      cta: "Go back to home",
+    }
   },
   dk: {
     identifier: "dk",
@@ -118,6 +122,10 @@ export const LANG = {
       tvShows: "TV Shows",
       searching: "Søger...",
     },
+    error: {
+      message: "Noget gik galt.",
+      cta: "Gå tilbage til start",
+    }
   },
   es: {
     identifier: "es",
@@ -177,6 +185,10 @@ export const LANG = {
       tvShows: "Series de televisión",
       searching: "Buscando...",
     },
+    error: {
+      message: "Algo salió mal.",
+      cta: "Volver a inicio",
+    }
   },
 };
 export const SUPPORTED_LANGUAGES = [

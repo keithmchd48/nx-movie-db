@@ -26,7 +26,6 @@ export const YOUTUBE_SCRIPT_ID = "youtube-iframe-api";
   BROWSE: "/browse",
   SHOWS: "/shows",
   MOVIES: "/movies",
-  ERROR: "/error",
 };
 
 export const HEADER_MENU = [
