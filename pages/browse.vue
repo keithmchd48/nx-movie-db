@@ -4,7 +4,7 @@
 </template>
 
 <script setup>
-import { MEDIA_TYPES } from "@/constants/assets";
+import { MediaType } from "@/constants/assets";
 
 const {
   fetchNowPlayingMovies,
@@ -22,7 +22,7 @@ const sampleMovie = computed(() => nowPlayingMovies?.[0]);
 const trailer = await fetchSampleMovieTrailer(sampleMovie.value?.id);
 const trailerKey = computed(() => trailer?.key);
 
-const { MOVIE, TV } = MEDIA_TYPES;
+const { MOVIE, TV } = MediaType;
 const { TRANSLATION } = useTranslations();
 const content = computed(() => [
   {

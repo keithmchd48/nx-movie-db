@@ -18,7 +18,7 @@
 
 <script setup>
 import { useDebounceFn } from "@vueuse/core";
-import { MEDIA_TYPES } from "@/constants/assets";
+import { MediaType } from "@/constants/assets";
 const { TRANSLATION } = useTranslations();
 
 const isSearching = ref(false);
@@ -34,14 +34,14 @@ const { searchAll } = useTmdbApi();
 const callSearchApi = async () => {
   isSearching.value = true;
   const results = await searchAll(searchQuery.value);
-  movies.value = results.filter((result) => result.media_type === MEDIA_TYPES.MOVIE);
-  tvShows.value = results.filter((result) => result.media_type === MEDIA_TYPES.TV);
+  movies.value = results.filter((result) => result.media_type === MediaType.MOVIE);
+  tvShows.value = results.filter((result) => result.media_type === MediaType.TV);
   isSearching.value = false;
 };
 const doSearch = useDebounceFn(callSearchApi, 1000);
 watch(() => searchQuery.value, doSearch);
 
-const { MOVIE, TV } = MEDIA_TYPES;
+const { MOVIE, TV } = MediaType;
 const content = computed(() => [
   {
     id: "search-movies",

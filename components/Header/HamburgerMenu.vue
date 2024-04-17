@@ -25,7 +25,7 @@
     </div>
 </template>
 <script setup>
-  import {AVATAR} from "@/constants/assets.js";
+  import {AVATAR} from "@/constants/assets";
   const { handleSignOut } = useFirebaseAuth();
 
   const props = defineProps({

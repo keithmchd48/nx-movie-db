@@ -57,14 +57,15 @@
   </div>
 </template>
 
-<script setup>
-import { PATHS } from "@/constants/assets";
+<script setup lang="ts">
+import { PATHS, FormType } from "@/constants/assets";
 import { useUserStore } from "@/store/useUserStore";
 const userStore = useUserStore();
 
-const LOGIN = "login";
-const SIGNUP = "signup";
-const INVALID_CREDENTIALS = "auth/invalid-credential";
+const LOGIN: FormType = FormType.LOGIN;
+const SIGNUP: string = FormType.SIGNUP;
+
+const INVALID_CREDENTIALS: string = "auth/invalid-credential";
 
 const validations = useValidations();
 const { validateLoginForm, validateSignupForm } = validations;
@@ -72,20 +73,20 @@ const { registerUser, signInUser, updateUser, auth } = useFirebaseAuth();
 
 const { TRANSLATION_AUTH, TRANSLATION_VALIDATIONS } = useTranslations();
 
-const formType = ref(LOGIN);
-const formTitle = computed(() =>
+const formType: Ref<string> = ref(LOGIN);
+const formTitle: ComputedRef<string> = computed(() =>
   formType.value === LOGIN ? TRANSLATION_AUTH.value.signIn : TRANSLATION_AUTH.value.signUp
 );
 
-const name = ref("");
-const email = ref("");
-const password = ref("");
-const confirmPassword = ref("");
-const errorMessage = ref(null);
+const name: Ref<string> = ref("");
+const email: Ref<string> = ref("");
+const password: Ref<string> = ref("");
+const confirmPassword: Ref<string> = ref("");
+const errorMessage: Ref<string | null> = ref(null);
 
 const submitForm = () => {
   if (formType.value === LOGIN) {
-    let message = validateLoginForm(email.value);
+    let message: string | null = validateLoginForm(email.value);
     errorMessage.value = TRANSLATION_VALIDATIONS.value[message];
     if (message) {
       return;
@@ -123,7 +124,7 @@ const submitForm = () => {
         errorMessage.value = null;
         updateUser(auth.currentUser, { name: name.value })
           .then(() => {
-            const { uid, email, displayName, photoURL } = auth.currentUser;
+            const { uid, email, displayName, photoURL } = auth?.currentUser ?? {};
             // store user in global store
             userStore.ADD_USER({ uid, email, displayName, photoURL });
             navigateTo(PATHS.BROWSE);
