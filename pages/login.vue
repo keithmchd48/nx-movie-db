@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script setup>
-import {BG_IMG_URL} from "@/constants/assets.js";
+<script setup lang="ts">
+import {BG_IMG_URL} from "@/constants/assets.ts";
 
 </script>
