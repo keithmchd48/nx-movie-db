@@ -8,16 +8,19 @@ export const AVATAR: string =
 
 export const BACKDROP_PLACEHOLDER: string = `${IMAGE_CDN_URL}backdrop_placeholder.jpg?cw=780&ch=439&canvas.width=780&canvas.height=439&w=780&h=439`;
 
-export const MEDIA_TYPES: {
-  MOVIE: string;
-  TV: string;
-} = {
-  MOVIE: "movie",
-  TV: "tv",
+export const enum MediaType {
+  MOVIE = "movie",
+  TV=  "tv",
 };
+
+export const enum FormType {
+  LOGIN = "login",
+  SIGNUP = "signup",
+}
+
 export const TMDB_DOMAIN: string = "https://www.themoviedb.org/";
-export const TMDB_DOMAIN_MOVIE: string = `${TMDB_DOMAIN}${MEDIA_TYPES.MOVIE}/`;
-export const TMDB_DOMAIN_SHOW: string = `${TMDB_DOMAIN}${MEDIA_TYPES.TV}/`;
+export const TMDB_DOMAIN_MOVIE: string = `${TMDB_DOMAIN}${MediaType.MOVIE}/`;
+export const TMDB_DOMAIN_SHOW: string = `${TMDB_DOMAIN}${MediaType.TV}/`;
 export const POSTER_PATH_URL: string = "https://image.tmdb.org/t/p/w780";
 export const YOUTUBE_DOMAIN: string = "https://www.youtube.com/";
 export const YOUTUBE_IFRAME_ID: string = "youtube-trailer";
