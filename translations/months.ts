@@ -1,4 +1,6 @@
-export const MONTHS = {
+import {type MonthInterface} from '@/translations/types'
+
+export const MONTHS: MonthInterface = {
   en: {
     jan: "Jan",
     feb: "Feb",
