@@ -92,7 +92,7 @@ const submitForm = () => {
       return;
     }
     signInUser(email.value, password.value)
-      .then((userCredential) => {
+      .then((userCredential: any) => {
         errorMessage.value = null;
         const theUser = userCredential.user;
         const { uid, email, displayName, photoURL } = theUser;
@@ -100,7 +100,7 @@ const submitForm = () => {
         userStore.ADD_USER({ uid, email, displayName, photoURL });
         navigateTo(PATHS.BROWSE);
       })
-      .catch((error) => {
+      .catch((error: { code: string }) => {
         console.log("Login erorr", error.code);
         if (error.code === INVALID_CREDENTIALS) {
           errorMessage.value = TRANSLATION_VALIDATIONS.value.invalidCredentials;
@@ -129,11 +129,11 @@ const submitForm = () => {
             userStore.ADD_USER({ uid, email, displayName, photoURL });
             navigateTo(PATHS.BROWSE);
           })
-          .catch((error) => {
+          .catch((error: { message: string }) => {
             console.log("Update user error", error.message);
           });
       })
-      .catch((error) => {
+      .catch((error: { message: string }) => {
         console.log("Signup error", error.message);
       });
   }

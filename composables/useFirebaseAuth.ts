@@ -26,14 +26,14 @@ export default function () {
   const { ADD_USER, LOGOUT_USER } = useUserStore();
   const { UPDATE_SEARCH_QUERY } = useSearchStore();
 
-  const registerUser = (email, password) => {
+  const registerUser = (email: string, password: string) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
-  const signInUser = (email, password) => {
+  const signInUser = (email: string, password: string) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const updateUser = (user, userData) => {
+  const updateUser = (user: any, userData: {name: string}) => {
     return updateProfile(user, {
       displayName: userData.name,
       photoURL: AVATAR,
