@@ -100,7 +100,12 @@ const submitForm = () => {
       .then((userCredential: any) => {
         errorMessage.value = null;
         const theUser = userCredential.user;
-        const { uid, email, displayName, photoURL } = theUser;
+        const { uid, email, displayName, photoURL }  = theUser || {
+          uid: "",
+          email: "",
+          displayName: "",
+          photoURL: "",
+        };
         // store user in global store
         userStore.ADD_USER({ uid, email, displayName, photoURL });
         navigateTo(PATHS.BROWSE);
@@ -129,7 +134,12 @@ const submitForm = () => {
         errorMessage.value = null;
         updateUser(auth.currentUser, { name: name.value })
           .then(() => {
-            const { uid, email, displayName, photoURL } = auth?.currentUser ?? {};
+            const { uid, email, displayName, photoURL } = auth?.currentUser ?? {
+              uid: "",
+              email: "",
+              displayName: "",
+              photoURL: "",
+            };
             // store user in global store
             userStore.ADD_USER({ uid, email, displayName, photoURL });
             navigateTo(PATHS.BROWSE);

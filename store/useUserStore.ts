@@ -1,7 +1,16 @@
-export const useUserStore = defineStore("userStore", () => {
-  const user = ref(null);
+interface UserInterface {
+  uid: string | null,
+  email: string | null,
+  displayName: string | null,
+  photoURL: string | null,
+};
 
-  function ADD_USER(newUser) {
+export type UserType = UserInterface | null;
+
+export const useUserStore = defineStore("userStore", () => {
+  const user: Ref<UserType> = ref(null);
+
+  function ADD_USER(newUser: UserType) {
     user.value = newUser;
   }
 
