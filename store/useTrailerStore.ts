@@ -1,14 +1,14 @@
 import {YOUTUBE_IFRAME_ID} from "@/constants/assets";
 
 export const useTrailerStore = defineStore("trailerStore", () => {
-  const isMuted = ref(true);
-  const YTPlayerRef = ref(null);
+  const isMuted: Ref<boolean> = ref(true);
+  const YTPlayerRef: Ref<Object | null> = ref(null);
 
   function TOGGLE_TRAILER_MUTE() {
     isMuted.value = !isMuted.value;
   }
 
-  function SET_YT_PLAYER_REF(trailerKey) {
+  function SET_YT_PLAYER_REF(trailerKey: string) {
     if (!window.YT) {
       return;
     }

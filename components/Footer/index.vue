@@ -16,9 +16,11 @@
     </p>
   </footer>
 </template>
-<script setup>
-const MY_BIO_LINK = "https://bio.to/keith-dev";
-const { TRANSLATION } = useTranslations();
+<script setup lang="ts">
+import { type LanguageType } from "@/translations/types";
 
-const currentYear = new Date().getFullYear();
+const MY_BIO_LINK: string = "https://bio.to/keith-dev";
+const { TRANSLATION }: {TRANSLATION: ComputedRef<LanguageType>} = useTranslations();
+
+const currentYear: number = new Date().getFullYear();
 </script>
