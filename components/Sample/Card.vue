@@ -9,20 +9,19 @@
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { POSTER_PATH_URL, BACKDROP_PLACEHOLDER, TMDB_DOMAIN } from "@/constants/assets";
+import {type LanguageType, type MonthType} from "@/translations/types";
+import { type SampleInterface } from "@/composables/useTmdbApi";
 
-const props = defineProps({
-  sample: {
-    type: Object,
-    required: true,
-  },
-  sampleType: {
-    type: String,
-    required: true,
-  },
-});
-const { sample, sampleType } = toRefs(props);
+interface Props {
+  sample: SampleInterface
+  sampleType: string
+}
+
+const props = defineProps<Props>();
+
+const { sample, sampleType }: {sample: Ref<SampleInterface>, sampleType: Ref<string>} = toRefs(props);
 const {
   title,
   original_name,
@@ -30,17 +29,17 @@ const {
   release_date,
   id,
   backdrop_path,
-} = sample.value;
+}: SampleInterface = sample.value;
 
-const { TRANSLATION } = useTranslations();
-const MONTH_TRANSLATIONS = computed(() => TRANSLATION.value.months);
+const { TRANSLATION }: {TRANSLATION: ComputedRef<LanguageType>} = useTranslations();
+const MONTH_TRANSLATIONS: ComputedRef<MonthType> = computed(() => TRANSLATION.value.months);
 const { getReadableDate } = useReadableDate();
 
-const readableDate = computed(() =>
+const readableDate: ComputedRef<string> = computed(() =>
   getReadableDate(release_date || first_air_date, MONTH_TRANSLATIONS.value)
 );
 
-const backdropSrc = computed(() =>
+const backdropSrc: ComputedRef<string> = computed(() =>
   backdrop_path ? `${POSTER_PATH_URL}${backdrop_path}` : BACKDROP_PLACEHOLDER
 );
 
