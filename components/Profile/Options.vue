@@ -5,7 +5,7 @@
   >
     <div class="p-2 flex items-center text-nowrap">
       <Icon name="material-symbols:person" class="mr-2" />
-      <p v-if="user.displayName">{{ user.displayName }}</p>
+      <p v-if="user && user.displayName">{{ user.displayName }}</p>
     </div>
     <div class="p-2 border-t-[0.5px]">
       <button
@@ -17,18 +17,18 @@
     </div>
   </div>
 </template>
-<script setup>
-const { TRANSLATION } = useTranslations();
+<script setup lang="ts">
+import { type LanguageType } from "@/translations/types";
+
+const { TRANSLATION }: {TRANSLATION: ComputedRef<LanguageType>} = useTranslations();
 const { handleSignOut } = useFirebaseAuth();
 
-import { useUserStore } from "@/store/useUserStore";
+import { useUserStore, type UserType } from "@/store/useUserStore";
 const userStore = useUserStore();
-const user = computed(() => userStore.user);
+const user: ComputedRef<UserType> = computed(() => userStore.user);
 
-const props = defineProps({
-  isOpen: {
-    type: Boolean,
-    default: false,
-  },
-});
+interface Props {
+  isOpen: boolean;
+}
+const props = defineProps<Props>();
 </script>

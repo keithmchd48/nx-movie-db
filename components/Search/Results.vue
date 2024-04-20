@@ -16,14 +16,16 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useDebounceFn } from "@vueuse/core";
 import { MediaType } from "@/constants/assets";
-const { TRANSLATION } = useTranslations();
+import { type CommonMediaInterface, type ContentIteratorInterface } from "@/composables/useTmdbApi";
+import { type LanguageType } from "@/translations/types";
+const { TRANSLATION }: {TRANSLATION: ComputedRef<LanguageType>} = useTranslations();
 
-const isSearching = ref(false);
-const movies = ref([]);
-const tvShows = ref([]);
+const isSearching: Ref<boolean> = ref(false);
+const movies: Ref<CommonMediaInterface[]> = ref([]);
+const tvShows: Ref<CommonMediaInterface[]> = ref([]);
 
 import { useSearchStore } from "@/store/useSearchStore";
 const searchStore = useSearchStore();
@@ -31,18 +33,20 @@ const searchQuery = computed(() => searchStore.searchQuery);
 
 const { searchAll } = useTmdbApi();
 
-const callSearchApi = async () => {
+const callSearchApi = async (): Promise<void> => {
   isSearching.value = true;
-  const results = await searchAll(searchQuery.value);
-  movies.value = results.filter((result) => result.media_type === MediaType.MOVIE);
-  tvShows.value = results.filter((result) => result.media_type === MediaType.TV);
+  const results: CommonMediaInterface[] = await searchAll(searchQuery.value);
+  movies.value = results.filter((result: CommonMediaInterface) => result.media_type === MediaType.MOVIE);
+  tvShows.value = results.filter((result: CommonMediaInterface) => result.media_type === MediaType.TV);
   isSearching.value = false;
 };
 const doSearch = useDebounceFn(callSearchApi, 1000);
 watch(() => searchQuery.value, doSearch);
 
-const { MOVIE, TV } = MediaType;
-const content = computed(() => [
+const MOVIE = MediaType.MOVIE;
+const TV = MediaType.TV;
+
+const content: ComputedRef<ContentIteratorInterface[]> = computed(() => [
   {
     id: "search-movies",
     title: TRANSLATION.value.searchResults.movies,
@@ -57,7 +61,7 @@ const content = computed(() => [
   },
 ]);
 
-const filteredContent = computed(() => {
+const filteredContent: ComputedRef<ContentIteratorInterface[]> = computed(() => {
   return content.value.filter((section) => section.samples.length > 0);
 });
 </script>
