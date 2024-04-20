@@ -13,19 +13,13 @@
     </div>
   </div>
 </template>
-<script setup>
-const props = defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-  samples: {
-    type: Array,
-    required: true,
-  },
-  sampleType: {
-    type: String,
-    required: true,
-  },
-});
+<script setup lang="ts">
+import { type SampleInterface } from "@/composables/useTmdbApi";
+
+interface Props {
+  title: string;
+  samples: SampleInterface[];
+  sampleType: string;
+}
+const props = defineProps<Props>();
 </script>

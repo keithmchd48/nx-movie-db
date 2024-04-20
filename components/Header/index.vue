@@ -46,15 +46,15 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { vOnClickOutside } from "@vueuse/components";
 
-import { useUserStore } from "@/store/useUserStore";
+import { useUserStore, type UserType } from "@/store/useUserStore";
 const userStore = useUserStore();
-const user = computed(() => userStore.user);
+const user: ComputedRef<UserType> = computed(() => userStore.user);
 
-const scroll = ref(false);
-const addGradient = () => {
+const scroll: Ref<boolean> = ref(false);
+const addGradient = (): void => {
   scroll.value = window.scrollY > 20;
 };
 onMounted(() => {
@@ -64,13 +64,13 @@ onDeactivated(() => {
   window.removeEventListener("scroll", addGradient);
 });
 
-const hamburgerMenuOpen = ref(false);
-const isHamburgerIconVisible = computed(() => user.value && !hamburgerMenuOpen.value);
-const isCloseIconVisible = computed(() => user.value && hamburgerMenuOpen.value);
-const openHamburgerMenu = () => {
+const hamburgerMenuOpen: Ref<boolean> = ref(false);
+const isHamburgerIconVisible: ComputedRef<boolean> = computed(() => !!user.value && !hamburgerMenuOpen.value);
+const isCloseIconVisible: ComputedRef<boolean> = computed(() => !!user.value && hamburgerMenuOpen.value);
+const openHamburgerMenu = (): void => {
   hamburgerMenuOpen.value = true;
 };
-const closeHamburgerMenu = () => {
+const closeHamburgerMenu = (): void => {
   hamburgerMenuOpen.value = false;
 };
 </script>
