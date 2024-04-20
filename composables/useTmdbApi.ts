@@ -48,24 +48,24 @@ export interface ContentIteratorInterface {
 };
 
 export default function () {
-  const fetchNowPlayingMovies = async (): Promise<CommonMediaInterface> => {
+  const fetchNowPlayingMovies = async (): Promise<CommonMediaInterface[]> => {
     const {data} = await useFetch(`api/movies/now_playing?page=1`);
-    return (data as { value: { results: any } }).value.results;
+    return (data as { value: { results: CommonMediaInterface[] } }).value.results;
   };
 
-  const fetchTopRatedMovies = async (): Promise<CommonMediaInterface> => {
+  const fetchTopRatedMovies = async (): Promise<CommonMediaInterface[]> => {
     const {data} = await useFetch(`api/movies/top_rated?page=1`);
-    return (data as { value: { results: any } }).value.results;
+    return (data as { value: { results: CommonMediaInterface[] } }).value.results;
   };
 
-  const fetchUpcomingMovies = async (): Promise<CommonMediaInterface> => {
+  const fetchUpcomingMovies = async (): Promise<CommonMediaInterface[]> => {
     const {data} = await useFetch(`api/movies/upcoming?page=1`);
-    return (data as { value: { results: any } }).value.results;
+    return (data as { value: { results: CommonMediaInterface[] } }).value.results;
   };
 
-  const fetchSampleMovieTrailer = async (movieId: number) => {
+  const fetchSampleMovieTrailer = async (movieId: number): Promise<TrailerInterface> => {
     const {data} = await useFetch(`api/movies/trailer/${movieId}`);
-    const results: any[] = (data as { value: { results: any } }).value.results;
+    const results: TrailerInterface[] = (data as { value: { results: TrailerInterface[] } }).value.results;
     const movieTrailer: TrailerInterface =
       results.find((video: TrailerInterface) => video.type === "Trailer") ||
       results[0];
@@ -74,31 +74,31 @@ export default function () {
 
   const fetchAiringTodayShows = async (): Promise<CommonMediaInterface[]> => {
     const {data} = await useFetch(`api/shows/airing_today?page=1`);
-    return (data as { value: { results: any } }).value.results;
+    return (data as { value: { results: CommonMediaInterface[] } }).value.results;
   };
 
   const fetchOnAirShows = async (): Promise<CommonMediaInterface[]> => {
     const {data} = await useFetch(`api/shows/on_the_air?page=1`);
-    return (data as { value: { results: any } }).value.results;
+    return (data as { value: { results: CommonMediaInterface[] } }).value.results;
   };
 
   const fetchTopRatedShows = async (): Promise<CommonMediaInterface[]> => {
     const {data} = await useFetch(`api/shows/top_rated?page=1`);
-    return (data as { value: { results: any } }).value.results;
+    return (data as { value: { results: CommonMediaInterface[] } }).value.results;
   };
 
-  const fetchSampleTvShowTrailer = async (tvShowId: number) => {
+  const fetchSampleTvShowTrailer = async (tvShowId: number): Promise<TrailerInterface> => {
     const {data} = await useFetch(`api/shows/trailer/${tvShowId}`);
-    const results: any[] = (data as { value: { results: any } }).value.results;
+    const results: TrailerInterface[] = (data as { value: { results: TrailerInterface[] } }).value.results;
     const showTrailer: TrailerInterface =
       results.find((video: TrailerInterface) => video.type === "Trailer") ||
       results[0];
     return showTrailer;
   };
 
-  const searchAll = async (searchQuery: string) => {
+  const searchAll = async (searchQuery: string): Promise<CommonMediaInterface[]> => {
     const {data} = await useFetch(`api/search?searchQuery=${searchQuery}&page=1`);
-    return (data as { value: { results: any } }).value.results;
+    return (data as { value: { results: CommonMediaInterface[] } }).value.results;
   };
 
   return {

@@ -3,8 +3,11 @@
   <SecondaryContent :content="content" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { MediaType } from "@/constants/assets";
+import { type CommonMediaInterface, type ContentIteratorInterface, type TrailerInterface } from "@/composables/useTmdbApi";
+import { type LanguageType } from "@/translations/types";
+const { TRANSLATION }: {TRANSLATION: ComputedRef<LanguageType>} = useTranslations();
 
 const {
   fetchTopRatedMovies,
@@ -13,35 +16,33 @@ const {
   fetchSampleMovieTrailer,
 } = useTmdbApi();
 
-const nowPlayingMovies = await fetchNowPlayingMovies();
-const upcomingMovies = await fetchUpcomingMovies();
-const topRatedMovies = await fetchTopRatedMovies();
+const nowPlayingMovies: CommonMediaInterface[] = await fetchNowPlayingMovies();
+const upcomingMovies: CommonMediaInterface[] = await fetchUpcomingMovies();
+const topRatedMovies: CommonMediaInterface[] = await fetchTopRatedMovies();
 
-const sampleMovie = computed(() => upcomingMovies?.[0]);
+const sampleMovie: ComputedRef<CommonMediaInterface> = computed(() => upcomingMovies?.[0]);
 
-const trailer = await fetchSampleMovieTrailer(sampleMovie.value?.id);
-const trailerKey = computed(() => trailer?.key);
+const trailer: TrailerInterface = await fetchSampleMovieTrailer(sampleMovie.value?.id);
+const trailerKey: ComputedRef<string> = computed(() => trailer?.key);
 
-const { MOVIE } = MediaType;
-const { TRANSLATION } = useTranslations();
-const content = computed(() => [
+const content: ComputedRef<ContentIteratorInterface[]> = computed(() => [
   {
     id: "movies-upcoming",
     title: TRANSLATION.value.movies.upcoming,
     samples: upcomingMovies,
-    sampleType: MOVIE,
+    sampleType: MediaType.MOVIE,
   },
   {
     id: "movies-now-playing",
     title: TRANSLATION.value.movies.nowPlaying,
     samples: nowPlayingMovies,
-    sampleType: MOVIE,
+    sampleType: MediaType.MOVIE,
   },
   {
     id: "movies-top-rated",
     title: TRANSLATION.value.movies.topRated,
     samples: topRatedMovies,
-    sampleType: MOVIE,
+    sampleType: MediaType.MOVIE,
   },
 ]);
 </script>
