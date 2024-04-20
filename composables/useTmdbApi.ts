@@ -22,19 +22,22 @@ export interface CommonMediaInterface {
 
 export interface SampleInterface {
   title?: string;
-  original_name?: string;
+  original_name: string;
   first_air_date: string;
   release_date: string;
   id: string;
   backdrop_path: string;
 };
 
-interface VideoInterface {
-  type: string;
-};
-
 export interface TrailerInterface {
+  id: string;
   key: string;
+  name: string;
+  official: boolean;
+  published_at: string;
+  site: string;
+  size: number;
+  type: string;
 };
 
 export interface ContentIteratorInterface {
@@ -64,7 +67,7 @@ export default function () {
     const {data} = await useFetch(`api/movies/trailer/${movieId}`);
     const results: any[] = (data as { value: { results: any } }).value.results;
     const movieTrailer: TrailerInterface =
-      results.find((video: VideoInterface) => video.type === "Trailer") ||
+      results.find((video: TrailerInterface) => video.type === "Trailer") ||
       results[0];
     return movieTrailer;
   };
@@ -88,7 +91,7 @@ export default function () {
     const {data} = await useFetch(`api/shows/trailer/${tvShowId}`);
     const results: any[] = (data as { value: { results: any } }).value.results;
     const showTrailer: TrailerInterface =
-      results.find((video: VideoInterface) => video.type === "Trailer") ||
+      results.find((video: TrailerInterface) => video.type === "Trailer") ||
       results[0];
     return showTrailer;
   };
