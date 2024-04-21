@@ -12,13 +12,13 @@
     />
   </div>
 </template>
-<script setup>
-const props = defineProps({
-  content: {
-    type: Array,
-    required: true,
-  },
-});
+<script setup lang="ts">
+import { type ContentIteratorInterface } from "@/composables/useTmdbApi";
+interface Props {
+  content: ContentIteratorInterface[];
+}
 
-const sampleList = computed(() => props.content);
+const props = defineProps<Props>();
+
+const sampleList: ComputedRef<ContentIteratorInterface[]> = computed(() => props.content);
 </script>

@@ -60,6 +60,8 @@
 <script setup lang="ts">
 import { PATHS, FormType } from "@/constants/assets";
 import { useUserStore } from "@/store/useUserStore";
+import { type LanguageType } from "@/translations/types";
+
 const userStore = useUserStore();
 
 const LOGIN: FormType = FormType.LOGIN;
@@ -71,7 +73,10 @@ const validations = useValidations();
 const { validateLoginForm, validateSignupForm } = validations;
 const { registerUser, signInUser, updateUser, auth } = useFirebaseAuth();
 
-const { TRANSLATION_AUTH, TRANSLATION_VALIDATIONS } = useTranslations();
+const { TRANSLATION_AUTH, TRANSLATION_VALIDATIONS }: {
+  TRANSLATION_AUTH: ComputedRef<LanguageType["auth"]>,
+  TRANSLATION_VALIDATIONS: ComputedRef<LanguageType["validations"]>
+} = useTranslations();
 
 const formType: Ref<string> = ref(LOGIN);
 const formTitle: ComputedRef<string> = computed(() =>
@@ -87,35 +92,40 @@ const errorMessage: Ref<string | null> = ref(null);
 const submitForm = () => {
   if (formType.value === LOGIN) {
     let message: string | null = validateLoginForm(email.value);
-    errorMessage.value = TRANSLATION_VALIDATIONS.value[message];
     if (message) {
+      errorMessage.value = TRANSLATION_VALIDATIONS.value[message as keyof LanguageType["validations"]];
       return;
     }
     signInUser(email.value, password.value)
-      .then((userCredential) => {
+      .then((userCredential: any) => {
         errorMessage.value = null;
         const theUser = userCredential.user;
-        const { uid, email, displayName, photoURL } = theUser;
+        const { uid, email, displayName, photoURL }  = theUser || {
+          uid: "",
+          email: "",
+          displayName: "",
+          photoURL: "",
+        };
         // store user in global store
         userStore.ADD_USER({ uid, email, displayName, photoURL });
         navigateTo(PATHS.BROWSE);
       })
-      .catch((error) => {
+      .catch((error: { code: string }) => {
         console.log("Login erorr", error.code);
         if (error.code === INVALID_CREDENTIALS) {
           errorMessage.value = TRANSLATION_VALIDATIONS.value.invalidCredentials;
         }
       });
   } else {
-    const message = validateSignupForm(
+    const message: string | null = validateSignupForm(
       name.value,
       email.value,
       password.value,
       confirmPassword.value
     );
 
-    errorMessage.value = TRANSLATION_VALIDATIONS.value[message];
     if (message) {
+      errorMessage.value = TRANSLATION_VALIDATIONS.value[message as keyof LanguageType["validations"]];
       return;
     }
 
@@ -124,16 +134,21 @@ const submitForm = () => {
         errorMessage.value = null;
         updateUser(auth.currentUser, { name: name.value })
           .then(() => {
-            const { uid, email, displayName, photoURL } = auth?.currentUser ?? {};
+            const { uid, email, displayName, photoURL } = auth?.currentUser ?? {
+              uid: "",
+              email: "",
+              displayName: "",
+              photoURL: "",
+            };
             // store user in global store
             userStore.ADD_USER({ uid, email, displayName, photoURL });
             navigateTo(PATHS.BROWSE);
           })
-          .catch((error) => {
+          .catch((error: { message: string }) => {
             console.log("Update user error", error.message);
           });
       })
-      .catch((error) => {
+      .catch((error: { message: string }) => {
         console.log("Signup error", error.message);
       });
   }

@@ -1,7 +1,7 @@
 export const useSearchStore = defineStore("searchStore", () => {
-  const searchQuery = ref("");
+  const searchQuery: Ref<string> = ref("");
 
-  function UPDATE_SEARCH_QUERY(query) {
+  function UPDATE_SEARCH_QUERY(query: string) {
     searchQuery.value = query;
   }
 

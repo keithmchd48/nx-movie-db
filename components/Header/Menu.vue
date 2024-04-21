@@ -1,15 +1,22 @@
 <template>
-  <li v-for="route in HEADER_MENU" :key="route.name">
+  <li v-for="route in headerMenuArray" :key="route.name">
     <NuxtLink :to="route.path">
-      {{ TRANSLATION.headerMenu[route.title] }}
+      {{ route.title }}
     </NuxtLink>
   </li>
 </template>
 
-<script setup>
-import { HEADER_MENU } from "@/constants/assets";
+<script setup lang="ts">
+import { HEADER_MENU, type MenuRouteInterface } from "@/constants/assets";
+import { type LanguageType } from "@/translations/types";
 
-const { TRANSLATION } = useTranslations();
+const { TRANSLATION }: { TRANSLATION: ComputedRef<LanguageType> } = useTranslations();
+const headerMenuTranslation: ComputedRef<LanguageType["headerMenu"]> = computed(() => TRANSLATION.value.headerMenu);
+
+const headerMenuArray = computed(() => HEADER_MENU.map((route: MenuRouteInterface) => ({
+  ...route,
+  title: headerMenuTranslation.value[route.title as keyof LanguageType["headerMenu"]]
+})));
 </script>
 
 <style scoped>

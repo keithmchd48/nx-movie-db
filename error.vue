@@ -13,10 +13,11 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { type LanguageType } from "@/translations/types";
 import { PATHS } from "@/constants/assets";
 
-const { TRANSLATION } = useTranslations();
+const { TRANSLATION }: { TRANSLATION: ComputedRef<LanguageType> } = useTranslations();
 
 const handleClick = () => {
   navigateTo(PATHS.BROWSE);

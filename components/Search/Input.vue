@@ -18,38 +18,30 @@
   </div>
 </template>
 
-<script setup>
-const props = defineProps({
-  placeholder: {
-    type: String,
-    default: "",
-  },
-  value: {
-    type: String,
-    default: "",
-  },
-  isVisible: {
-    type: Boolean,
-    default: true,
-  },
-});
+<script setup lang="ts">
+interface Props {
+  placeholder: string;
+  value: string;
+  isVisible: boolean;
+}
+const props = defineProps<Props>();
 
-const inputRef = ref(null);
+const inputRef: Ref<HTMLInputElement | null> = ref(null);
 
 watch(
   () => props.isVisible,
   (first, second) => {
     nextTick(() => {
-      inputRef.value.focus();
+      inputRef?.value?.focus();
     });
   }
 );
 
 const emit = defineEmits(["change", "clear"]);
-const onChange = (e) => {
+const onChange = (e: Event): void => {
   emit("change", e);
 };
-const onClear = () => {
+const onClear = (): void => {
   emit("clear");
 };
 </script>

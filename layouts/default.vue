@@ -11,10 +11,10 @@
   </div>
   <Footer />
 </template>
-<script setup>
+<script setup lang="ts">
 import { useSearchStore } from "@/store/useSearchStore";
 const searchStore = useSearchStore();
-const searchQuery = computed(() => searchStore.searchQuery);
+const searchQuery: ComputedRef<string> = computed(() => searchStore.searchQuery);
 
-const { headTitle } = useHeadTitles();
+const { headTitle }: { headTitle: ComputedRef<string> } = useHeadTitles();
 </script>

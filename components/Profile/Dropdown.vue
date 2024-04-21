@@ -8,19 +8,19 @@
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { vOnClickOutside } from "@vueuse/components";
 import { AVATAR } from "@/constants/assets";
 
-import { useUserStore } from "@/store/useUserStore";
+import { useUserStore, type UserType } from "@/store/useUserStore";
 const userStore = useUserStore();
-const user = computed(() => userStore.user);
+const user: ComputedRef<UserType> = computed(() => userStore.user);
 
-const isProfileOptionsOpen = ref(false);
-const toggleProfileOptions = () => {
+const isProfileOptionsOpen: Ref<boolean> = ref(false);
+const toggleProfileOptions = (): void => {
   isProfileOptionsOpen.value = !isProfileOptionsOpen.value;
 };
-const closeProfileOptions = () => {
+const closeProfileOptions = (): void => {
   isProfileOptionsOpen.value = false;
 };
 </script>

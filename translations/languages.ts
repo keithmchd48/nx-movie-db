@@ -1,6 +1,7 @@
-import { MONTHS } from "./months";
+import { MONTHS } from "@/translations/months";
+import { type LanguageInterface, type SupportedLanguageType } from "@/translations/types";
 
-export const LANG = {
+export const LANG: LanguageInterface = {
   en: {
     identifier: "en",
     label: "EN",
@@ -212,7 +213,7 @@ export const LANG = {
     },
   },
 };
-export const SUPPORTED_LANGUAGES = [
+export const SUPPORTED_LANGUAGES: SupportedLanguageType[] = [
   { identifier: LANG.en.identifier, label: LANG.en.label },
   { identifier: LANG.dk.identifier, label: LANG.dk.label },
   { identifier: LANG.es.identifier, label: LANG.es.label },

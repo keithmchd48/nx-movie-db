@@ -3,8 +3,11 @@
   <SecondaryContent :content="content" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { MediaType } from "@/constants/assets";
+import { type CommonMediaInterface, type ContentIteratorInterface, type TrailerInterface } from "@/composables/useTmdbApi";
+import { type LanguageType } from "@/translations/types";
+const { TRANSLATION }: {TRANSLATION: ComputedRef<LanguageType>} = useTranslations();
 
 const {
   fetchAiringTodayShows,
@@ -13,35 +16,33 @@ const {
   fetchSampleTvShowTrailer,
 } = useTmdbApi();
 
-const airingTodayShows = await fetchAiringTodayShows();
-const onAirShows = await fetchOnAirShows();
-const topRatedShows = await fetchTopRatedShows();
+const airingTodayShows: CommonMediaInterface[] = await fetchAiringTodayShows();
+const onAirShows: CommonMediaInterface[] = await fetchOnAirShows();
+const topRatedShows: CommonMediaInterface[] = await fetchTopRatedShows();
 
-const sampleShow = computed(() => topRatedShows?.[0]);
+const sampleShow: ComputedRef<CommonMediaInterface> = computed(() => topRatedShows?.[0]);
 
-const trailer = await fetchSampleTvShowTrailer(sampleShow.value?.id);
-const trailerKey = computed(() => trailer?.key);
+const trailer: TrailerInterface = await fetchSampleTvShowTrailer(sampleShow.value?.id);
+const trailerKey: ComputedRef<string> = computed(() => trailer?.key);
 
-const { TV } = MediaType;
-const { TRANSLATION } = useTranslations();
-const content = computed(() => [
+const content: ComputedRef<ContentIteratorInterface[]> = computed(() => [
   {
     id: "tvshows-airing-today",
     title: TRANSLATION.value.shows.airingToday,
     samples: airingTodayShows,
-    sampleType: TV,
+    sampleType: MediaType.TV,
   },
   {
     id: "tvshows-on-the-air",
     title: TRANSLATION.value.shows.onTheAir,
     samples: onAirShows,
-    sampleType: TV,
+    sampleType: MediaType.TV,
   },
   {
     id: "tvshows-top-rated",
     title: TRANSLATION.value.shows.topRated,
     samples: topRatedShows,
-    sampleType: TV,
+    sampleType: MediaType.TV,
   },
 ]);
 </script>

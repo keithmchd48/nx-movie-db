@@ -1,9 +1,9 @@
-import { useUserStore } from "@/store/useUserStore";
+import { useUserStore, type UserType } from "@/store/useUserStore";
 import { PATHS } from "@/constants/assets";
 
 export default defineNuxtRouteMiddleware((to, from) => {
   const userStore = useUserStore();
-  const user = computed(() => userStore.user);
+  const user: ComputedRef<UserType> = computed(() => userStore.user);
   
   const allPaths = Object.values(PATHS);
   if(!allPaths.includes(to.path)) {

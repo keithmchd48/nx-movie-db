@@ -24,21 +24,18 @@
       </ul>
     </div>
 </template>
-<script setup>
+<script setup lang="ts">
   import {AVATAR} from "@/constants/assets";
   const { handleSignOut } = useFirebaseAuth();
+  import { type LanguageType } from "@/translations/types";
+  import { type UserType } from "@/store/useUserStore";
 
-  const props = defineProps({
-    user: {
-      type: [Object, null],
-      required: true,
-    },
-    isHamburgerOpen: {
-      type: Boolean,
-      default: false,
-    },
-  });
-  const { TRANSLATION } = useTranslations();
+  interface Props {
+    user: UserType;
+    isHamburgerOpen: boolean;
+  }
+  const props = defineProps<Props>();
+  const { TRANSLATION }: {TRANSLATION: ComputedRef<LanguageType>} = useTranslations();
 
-  const isHamburgerVisible = computed(() => props.user && props.isHamburgerOpen);
+  const isHamburgerVisible: ComputedRef<Boolean> = computed(() => !!props.user && props.isHamburgerOpen);
 </script>

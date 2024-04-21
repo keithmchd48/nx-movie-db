@@ -26,13 +26,15 @@ export const YOUTUBE_DOMAIN: string = "https://www.youtube.com/";
 export const YOUTUBE_IFRAME_ID: string = "youtube-trailer";
 export const YOUTUBE_SCRIPT_ID: string = "youtube-iframe-api";
 
-export const PATHS: {
+type AppPathsType = {
   INDEX: string;
   AUTH: string;
   BROWSE: string;
   SHOWS: string;
   MOVIES: string;
-} = {
+
+};
+export const PATHS: AppPathsType = {
   INDEX: "/",
   AUTH: "/login",
   BROWSE: "/browse",
@@ -40,11 +42,13 @@ export const PATHS: {
   MOVIES: "/movies",
 };
 
-export const HEADER_MENU: {
+export interface MenuRouteInterface {
   name: string;
   title: string;
   path: string;
-}[] = [
+}
+
+export const HEADER_MENU: MenuRouteInterface[] = [
   {
     name: "home",
     title: "home",
