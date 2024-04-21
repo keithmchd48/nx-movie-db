@@ -12,24 +12,25 @@
 <script setup lang="ts">
 import { POSTER_PATH_URL, BACKDROP_PLACEHOLDER, TMDB_DOMAIN } from "@/constants/assets";
 import {type LanguageType, type MonthType} from "@/translations/types";
-import { type SampleInterface } from "@/composables/useTmdbApi";
+import { type CommonMediaInterface } from "@/composables/useTmdbApi";
 
 interface Props {
-  sample: SampleInterface
+  sample: CommonMediaInterface
   sampleType: string
 }
 
 const props = defineProps<Props>();
 
-const { sample, sampleType }: {sample: Ref<SampleInterface>, sampleType: Ref<string>} = toRefs(props);
+const { sample, sampleType }: {sample: Ref<CommonMediaInterface>, sampleType: Ref<string>} = toRefs(props);
 const {
   title,
   original_name,
-  first_air_date,
-  release_date,
   id,
   backdrop_path,
-}: SampleInterface = sample.value;
+}: CommonMediaInterface = sample.value;
+
+const release_date: string = sample.value?.release_date || "";
+const first_air_date: string = sample.value?.first_air_date || "";
 
 const { TRANSLATION }: {TRANSLATION: ComputedRef<LanguageType>} = useTranslations();
 const MONTH_TRANSLATIONS: ComputedRef<MonthType> = computed(() => TRANSLATION.value.months);

@@ -14,11 +14,11 @@
   </div>
 </template>
 <script setup lang="ts">
-import { type SampleInterface } from "@/composables/useTmdbApi";
+import { type CommonMediaInterface } from "@/composables/useTmdbApi";
 
 interface Props {
   title: string;
-  samples: SampleInterface[];
+  samples: CommonMediaInterface[];
   sampleType: string;
 }
 const props = defineProps<Props>();

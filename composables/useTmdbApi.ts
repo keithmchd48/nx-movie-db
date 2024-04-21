@@ -18,15 +18,7 @@ export interface CommonMediaInterface {
   name?: string;
   origin_country?: string[];
   original_name?: string;
-};
-
-export interface SampleInterface {
-  title?: string;
-  original_name: string;
-  first_air_date: string;
-  release_date: string;
-  id: string;
-  backdrop_path: string;
+  original_title?: string;
 };
 
 export interface TrailerInterface {
