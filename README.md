@@ -15,7 +15,7 @@ npm run build
 ```
 
 # Features
-  - Built using Nuxt 3
+  - Built using Nuxt 3 & Typescript
   - UI/UX inspired by [Netflix](https://www.netflix.com/)
   - Authentication using [Firebase Authentication](https://firebase.google.com/docs/auth)
   - Movie and TV Shows DM from [The Movie Database (TMDB)](https://www.themoviedb.org/)
