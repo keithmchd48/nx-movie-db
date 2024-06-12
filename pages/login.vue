@@ -18,5 +18,7 @@
 
 <script setup lang="ts">
 import {BG_IMG_URL} from "@/constants/assets.ts";
+const config = useRuntimeConfig();
+console.log('VITE_API_DOMAIN', config.public.VITE_API_DOMAIN);
 
 </script>

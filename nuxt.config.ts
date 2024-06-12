@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     NUXT_TMDB_API_KEY: process.env.NUXT_TMDB_API_KEY,
     NUXT_TMDB_API_BASE_URL: process.env.NUXT_TMDB_API_BASE_URL,
     public: {
+      VITE_API_DOMAIN: process.env.VITE_API_DOMAIN,
       NUXT_FIREBASE_API_KEY: process.env.NUXT_FIREBASE_API_KEY,
       NUXT_FIREBASE_AUTH_DOMAIN: process.env.NUXT_FIREBASE_AUTH_DOMAIN,
       NUXT_FIREBASE_PROJECT_ID: process.env.NUXT_FIREBASE_PROJECT_ID,
